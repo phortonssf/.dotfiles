@@ -1,1 +1,45 @@
 alias zshrc="nvim ~/.dotfiles/zsh/.zshrc"
+alias zshralias="nvim ~/.dotfiles/zsh/.zshrc.alias"
+
+
+function current_branch() {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || \
+  ref=$(git rev-parse --short HEAD 2> /dev/null) || return
+  echo ${ref#refs/heads/}
+}
+function current_repository() {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || \
+  ref=$(git rev-parse --short HEAD 2> /dev/null) || return
+  echo $(git remote -v | cut -d':' -f 2)
+}
+# these aliases take advantage of the previous function
+alias ggpull='git pull origin $(current_branch)'
+alias ggpur='git pull --rebase origin $(current_branch)'
+alias ggpush='git push origin $(current_branch)'
+alias ggpnp='git pull origin $(current_branch) && git push origin $(current_branch)'
+alias gs="git status"
+alias ll=" ls -la"
+alias ggdev=" git checkout master && git branch -D develop && git fetch origin develop && git switch develop"
+
+#Dot file bare git repo alias
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+alias initvim="$EDITOR ~/.config/nvim/init.vim"
+alias zshrc="$EDITOR ~/.zshrc"
+alias vimrc="$EDITOR ~/.vimrc"
+alias vimkeys="$EDITOR ~/.config/nvim/plugin/keymaps.vim"
+alias zshplugins="$EDITOR ~/.zsh-plugins.zsh"
+alias zshhistory="$EDITOR ~/.zsh_history"
+alias vs_settings=" "
+
+#Dirs ZSH alias
+alias d='dirs -v | head -10'
+alias 1='cd -'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias 5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'

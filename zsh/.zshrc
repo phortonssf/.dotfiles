@@ -9,31 +9,6 @@ include () {
    if [[ -f "$1" ]] && source "$1"
 }
 
-
-###   GIT 
-alias ll=" ls -la"
-alias ggdev=" git checkout master && git branch -D develop && git fetch origin develop && git switch develop"
-function current_branch() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || \
-  ref=$(git rev-parse --short HEAD 2> /dev/null) || return
-  echo ${ref#refs/heads/}
-}
-
-function current_repository() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || \
-  ref=$(git rev-parse --short HEAD 2> /dev/null) || return
-  echo $(git remote -v | cut -d':' -f 2)
-}
-
-# these aliases take advantage of the previous function
-alias ggpull='git pull origin $(current_branch)'
-alias ggpur='git pull --rebase origin $(current_branch)'
-alias ggpush='git push origin $(current_branch)'
-alias ggpnp='git pull origin $(current_branch) && git push origin $(current_branch)'
-
-alias gs="git status"
-
-
 export BROWSER=none
 
 #Load nvim as editor otherwise vim
@@ -80,32 +55,9 @@ unsetopt BEEP
 zle -N auto-suggest-execute 
 bindkey '^[OM' auto-suggest-execute 
 include ~/.zsh-plugins.zsh 
+include ~/.dotfiles/zsh/.zshrc.alias
 #ZSH_THEME="agnoster"
 
-
-#Dot file bare git repo alias
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-
-alias initvim="$EDITOR ~/.config/nvim/init.vim"
-alias zshrc="$EDITOR ~/.zshrc"
-alias vimrc="$EDITOR ~/.vimrc"
-alias vimkeys="$EDITOR ~/.config/nvim/plugin/keymaps.vim"
-alias zshplugins="$EDITOR ~/.zsh-plugins.zsh"
-alias zshhistory="$EDITOR ~/.zsh_history"
-alias vs_settings=" "
-
-
-#Dirs ZSH alias
-alias d='dirs -v | head -10'
-alias 1='cd -'
-alias 2='cd -2'
-alias 3='cd -3'
-alias 4='cd -4'
-alias 5='cd -5'
-alias 6='cd -6'
-alias 7='cd -7'
-alias 8='cd -8'
-alias 9='cd -9'
 
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
@@ -121,7 +73,6 @@ export HISTORY_IGNORE="(ls|cat|AWS|SECRET|cd|less|zsh|history)"
  zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
 
 
-# alias ls=" ls"
 # set DISPLAY variable to the IP automatically assigned to WSL2
 # export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
 # sudo / etc/init.d/dbus start &> /dev/null
@@ -197,7 +148,61 @@ if type rg &> /dev/null; then
       export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
 
-# source .config/power10k_themes/.zsh-theme-gruvbox-material-dark
+source ~/.config/power10k_themes/.zsh-theme-gruvbox-material-dark
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# add Pulumi to the PATH
+export PATH=$PATH:$HOME/.pulumi/bin
+export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+# export DISPLY=0:
+unset LIBGL_ALWAYS_INDIRECT
+export LIBGL_ALWAYS_INDIRECT=Yes
+export GDK_SCALE=3
+# export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0
+
+
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[2 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+# Set cursor style (DECSCUSR), VT520.
+# 0  ⇒  blinking block.
+# 1  ⇒  blinking block (default).
+# 2  ⇒  steady block.
+# 3  ⇒  blinking underline.
+# 4  ⇒  steady underline.
+# 5  ⇒  blinking bar, xterm.
+# 6  ⇒  steady bar, xterm
+PATH=$HOME/.local/bin:$PATH
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#bindkey '^ ' autosuggest-naccept
+#bindkey -s "^[l" "^Q echo; git status^J"
+
+# use ripgrep with FZF
+if type rg &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='rg --files'
+      export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
+#source .config/power10k_themes/.zsh-theme-gruvbox-material-dark
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
