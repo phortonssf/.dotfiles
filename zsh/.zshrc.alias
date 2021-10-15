@@ -27,6 +27,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias initvim="$EDITOR ~/.config/nvim/init.vim"
 alias zshrc="$EDITOR ~/.zshrc"
 alias vimrc="$EDITOR ~/.vimrc"
+alias zalias="$EDITOR ~/.zshrc.alias" 
 alias vimkeys="$EDITOR ~/.config/nvim/plugin/keymaps.vim"
 alias zshplugins="$EDITOR ~/.zsh-plugins.zsh"
 alias zshhistory="$EDITOR ~/.zsh_history"
