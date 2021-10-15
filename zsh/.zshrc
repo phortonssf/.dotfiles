@@ -1,10 +1,9 @@
 export PATH=$PATH:/usr/local/go/bin
-unset zle_bracketed_paste
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-# Inlcude file if it exists
+# Include file if it exists
 include () {
    if [[ -f "$1" ]] && source "$1"
 }
@@ -22,7 +21,6 @@ autoload -Uz promptinit
 promptinit
 
 # dont require cd to change dir
-setopt auto_cd
 export PATH=~/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:$PATH 
 
@@ -37,46 +35,28 @@ export PATH=$PATH:/mnt/c/Windows/System32
 export ZSH="/home/digitaldive/.oh-my-zsh"
 
 ##### NEEDS TO LOAD BEFORE SOURCING OH-MY-ZSH  #######
-#zstyle :omz:plugins:ssh-agent id_rsa
-#zstyle :omz:plugins:ssh-agent lifetime 4h
 
 eval $(keychain --eval .ssh/id_rsa)
-# turn off all beeps
-unsetopt BEEP
-# Turn off autocomplete beeps
-# unsetopt LIST_BEEP
 
-#source ~/.oh-my-zsh/templates/zshrc.zsh-template
 #set keymap vi-command Shift-Enter: autosuggest-accept-line
 #set keymap vi-command Alt-l: autosuggest-execute
 #bindkey ll autosuggest-accept-line
 #bindkey ll autosuggest-execute
 #bindkey '^[OM' accept-line
 zle -N auto-suggest-execute 
-bindkey '^[OM' auto-suggest-execute 
 include ~/.zsh-plugins.zsh 
-include ~/.dotfiles/zsh/.zshrc.alias
-#ZSH_THEME="agnoster"
-
-
+include ~/.zshrc.alias
+include ~/.inputrc
+include ~/.zshrc.sets 
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
-# setopt histignorealldups sharehistory
-setopt histignorespace
-setopt HIST_IGNORE_SPACE
 export HISTORY_IGNORE="(ls|cat|AWS|SECRET|cd|less|zsh|history)"
 
 # Keeps errors out of zsh history
  zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
-
-
-# set DISPLAY variable to the IP automatically assigned to WSL2
-# export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
-# sudo / etc/init.d/dbus start &> /dev/null
-# export DISPlAY=localhost:0
 
 # Use modern completion system
 autoload -Uz compinit
@@ -128,12 +108,7 @@ function expand-or-complete-or-list-files() {
 fi
                                                         }
 zle -N expand-or-complete-or-list-files
-#bind to tab
-bindkey '^I' expand-or-complete-or-list-files
-bindkey -v
 export KEYTIMEOUT=14
-source ~/.inputrc
-#neofetch
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -148,7 +123,6 @@ if type rg &> /dev/null; then
       export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
 
-source ~/.config/power10k_themes/.zsh-theme-gruvbox-material-dark
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
@@ -156,7 +130,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 export PATH=$PATH:$HOME/.pulumi/bin
 export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
 # export DISPLY=0:
-unset LIBGL_ALWAYS_INDIRECT
 export LIBGL_ALWAYS_INDIRECT=Yes
 export GDK_SCALE=3
 # export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0
@@ -202,18 +175,12 @@ if type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files'
       export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
-#source .config/power10k_themes/.zsh-theme-gruvbox-material-dark
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-# add Pulumi to the PATH
-export PATH=$PATH:$HOME/.pulumi/bin
 export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
-# export DISPLY=0:
-unset LIBGL_ALWAYS_INDIRECT
 export LIBGL_ALWAYS_INDIRECT=Yes
 export GDK_SCALE=3
-# export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0
 
 
 function zle-keymap-select {
@@ -227,7 +194,7 @@ function zle-keymap-select {
     echo -ne '\e[5 q'
   fi
 }
-zle -N zle-keymap-select
+# zle -N zle-keymap-select
 zle-line-init() {
     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
     echo -ne "\e[5 q"
@@ -245,3 +212,4 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 # 5  ⇒  blinking bar, xterm.
 # 6  ⇒  steady bar, xterm
 PATH=$HOME/.local/bin:$PATH
+include ~/.config/power10k_themes/.zsh-theme-gruvbox-material-dark
