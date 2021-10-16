@@ -15,7 +15,7 @@ alias ggpull='git pull origin $(current_branch)'
 alias ggpur='git pull --rebase origin $(current_branch)'
 alias ggpush='git push origin $(current_branch)'
 alias ggpnp='git pull origin $(current_branch) && git push origin $(current_branch)'
-alias gs="git status"
+alias gs="nvim -c 'G'"
 alias ll=" ls -la"
 alias ggdev=" git checkout master && git branch -D develop && git fetch origin develop && git switch develop"
 
@@ -31,8 +31,8 @@ alias initvim="$EDITOR ~/.dotfiles/nvim/.config/nvim/init.vim"
 alias vimrc="$EDITOR ~/.dotfiles/vim/.vimrc"
 alias zshhistory="$EDITOR ~/.zsh_history"
 alias vs_settings=" "
-alias tconf="$EDITOR ~/.dotfiles/tmux/.tmux.conf"
-
+alias tconf="$EDITOR ~/.dotfiles/tmux/.tmux.conf ~/.dotfiles/bin/.local/bin/tmux-sessionizer"
+alias tsess="$EDITOR  ~/.dotfiles/tmux/.tmux.conf ~/.dotfiles/bin/.local/bin/tmux-sessionizer"
 #Dirs ZSH alias
 alias d='dirs -v | head -10'
 alias 1='cd -'
