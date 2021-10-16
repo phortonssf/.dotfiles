@@ -32,6 +32,7 @@ alias vimkeys="$EDITOR ~/.config/nvim/plugin/keymaps.vim"
 alias zshplugins="$EDITOR ~/.zsh-plugins.zsh"
 alias zshhistory="$EDITOR ~/.zsh_history"
 alias vs_settings=" "
+alias tconf="$EDITOR ~/.tmux.conf"
 
 #Dirs ZSH alias
 alias d='dirs -v | head -10'
@@ -45,4 +46,3 @@ alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
 
-alias tconf="~/.tmux.conf"
