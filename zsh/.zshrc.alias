@@ -1,5 +1,3 @@
-alias zshrc="nvim ~/.dotfiles/zsh/.zshrc"
-alias zshralias="nvim ~/.dotfiles/zsh/.zshrc.alias"
 
 
 function current_branch() {
@@ -24,15 +22,16 @@ alias ggdev=" git checkout master && git branch -D develop && git fetch origin d
 #Dot file bare git repo alias
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-alias initvim="$EDITOR ~/.config/nvim/init.vim"
-alias zshrc="$EDITOR ~/.zshrc"
-alias vimrc="$EDITOR ~/.vimrc"
-alias zalias="$EDITOR ~/.zshrc.alias" 
-alias vimkeys="$EDITOR ~/.config/nvim/plugin/keymaps.vim"
-alias zshplugins="$EDITOR ~/.zsh-plugins.zsh"
+alias zshrc="$EDITOR ~/.dotfiles/zsh/.zshrc"
+alias zalias="$EDITOR ~/.dotfiles/zsh/.zshrc.alias" 
+alias zshralias="nvim ~/.dotfiles/zsh/.zshrc.alias"
+alias zshplugins="$EDITOR ~/.dotfiles/zsh/.zsh-plugins.zsh"
+alias vimkeys="$EDITOR ~/.dotfiles/nvim/.config/nvim/plugin/keymaps.vim"
+alias initvim="$EDITOR ~/.dotfiles/nvim/.config/nvim/init.vim"
+alias vimrc="$EDITOR ~/.dotfiles/vim/.vimrc"
 alias zshhistory="$EDITOR ~/.zsh_history"
 alias vs_settings=" "
-alias tconf="$EDITOR ~/.tmux.conf"
+alias tconf="$EDITOR ~/.dotfiles/tmux/.tmux.conf"
 
 #Dirs ZSH alias
 alias d='dirs -v | head -10'
