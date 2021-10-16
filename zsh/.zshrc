@@ -1,5 +1,7 @@
 export PATH=$PATH:/usr/local/go/bin
 # confirmations, etc.) must go above this block; everything else may go below.
+#
+#
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -23,7 +25,7 @@ promptinit
 # dont require cd to change dir
 export PATH=~/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:$PATH 
-
+export PATH=$HOME/.local/bin/lvim:$PATH
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
