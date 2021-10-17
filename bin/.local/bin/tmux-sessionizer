@@ -10,14 +10,14 @@ if [[ -z $selected ]]; then
 fi
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
-
 if ! tmux has-session -t $selected_name 2> /dev/null; then
-    tmux new-session -s $selected_name -c $selected -n zsh -d
-    tmux send-keys -t $selected_name 'nvim .' Enter
+    tmux new-session -s $selected_name -c $selected -n $selected_name  -d
+    tmux send-keys -t $selected_name 'nvim' Enter
+    tmux neww -t $selected_name -n zsh -c $selected
 fi
 
 if [[ -z $TMUX ]]; then
-    tmux attach-session -t $selected_name
+    tmux attach-session -t $selected_name:1
 else
-    tmux switch-client -t $selected_name
+    tmux switch-client -t $selected_name:1
 fi
