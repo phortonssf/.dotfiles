@@ -9,7 +9,7 @@ fi
 include () {
    if [[ -f "$1" ]] && source "$1"
 }
-
+bindkey -ar ":" 
 export BROWSER=none
 
 #Load nvim as editor otherwise vim
