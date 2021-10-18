@@ -1,33 +1,10 @@
 export PATH=$PATH:/usr/local/go/bin
-# confirmations, etc.) must go above this block; everything else may go below.
-#
-#
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-# Include file if it exists
-include () {
-   if [[ -f "$1" ]] && source "$1"
-}
-bindkey -ar ":" 
 export BROWSER=none
-
-#Load nvim as editor otherwise vim
-if [[ -f /bin/nvim ]]
-  then EDITOR=nvim
-  else EDITOR=vim
-fi
-echo $EDITOR
-
-autoload -Uz promptinit
-promptinit
 
 # dont require cd to change dir
 export PATH=~/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:$PATH 
 export PATH=$HOME/.local/bin/lvim:$PATH
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # ZSH_DISABLE_COMPFIX=true:
 export PATH=/home/phortonssf/.local/bin:$PATH
@@ -36,6 +13,32 @@ export PATH=$PATH:/mnt/c/Windows/System32
 # Path to your oh-my-zsh installation
 export ZSH="/home/digitaldive/.oh-my-zsh"
 
+# If you come from bash you might have to change your $PATH.
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+export HISTORY_IGNORE="(ls|cat|AWS|SECRET|cd|less|zsh|history)"
+
+# confirmations, etc.) must go above this block; everything else may go below.
+#
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+# Include file if it exists
+include () {
+   if [[ -f "$1" ]] && source "$1"
+}
+# REMOVES EXECUTE
+bindkey -ar ":" 
+
+
+autoload -Uz promptinit
+promptinit
+
+#Load nvim as editor otherwise vim
+if [[ -f /bin/nvim ]]
+  then EDITOR=nvim
+  else EDITOR=vim
+fi
 ##### NEEDS TO LOAD BEFORE SOURCING OH-MY-ZSH  #######
 
 eval $(keychain --eval .ssh/id_rsa)
@@ -55,7 +58,6 @@ include ~/.zshrc.sets
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
-export HISTORY_IGNORE="(ls|cat|AWS|SECRET|cd|less|zsh|history)"
 
 # Keeps errors out of zsh history
  zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
@@ -75,9 +77,6 @@ zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
 zstyle ':completion:*' menu select=long
-
-
-
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' verbose true
@@ -116,32 +115,17 @@ export KEYTIMEOUT=14
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-#bindkey '^ ' autosuggest-naccept
-#bindkey -s "^[l" "^Q echo; git status^J"
 
 # use ripgrep with FZF
 if type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files'
       export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
-
-
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-# add Pulumi to the PATH
-export PATH=$PATH:$HOME/.pulumi/bin
-export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
-# export DISPLY=0:
-export LIBGL_ALWAYS_INDIRECT=Yes
-export GDK_SCALE=3
-# export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0
 
 PATH=$HOME/.local/bin:$PATH
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-#bindkey '^ ' autosuggest-naccept
-#bindkey -s "^[l" "^Q echo; git status^J"
 
 # use ripgrep with FZF
 if type rg &> /dev/null; then
@@ -149,42 +133,4 @@ if type rg &> /dev/null; then
       export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
-export LIBGL_ALWAYS_INDIRECT=Yes
-export GDK_SCALE=3
-
-
-# function zle-keymap-select {
-#   if [[ ${KEYMAP} == vicmd ]] ||
-#      [[ $1 = 'block' ]]; then
-#     echo -ne '\e[2 q'
-#   elif [[ ${KEYMAP} == main ]] ||
-#        [[ ${KEYMAP} == viins ]] ||
-#        [[ ${KEYMAP} = '' ]] ||
-#        [[ $1 = 'beam' ]]; then
-#     echo -ne '\e[5 q'
-#   fi
-# }
-# # zle -N zle-keymap-select
-# zle-line-init() {
-#     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-#     echo -ne "\e[5 q"
-# }
-# zle -N zle-line-init
-# echo -ne '\e[5 q' # Use beam shape cursor on startup.
-# preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-
-# Set cursor style (DECSCUSR), VT520.
-# 0  ⇒  blinking block.
-# 1  ⇒  blinking block (default).
-# 2  ⇒  steady block.
-# 3  ⇒  blinking underline.
-# 4  ⇒  steady underline.
-# 5  ⇒  blinking bar, xterm.
-# 6  ⇒  steady bar, xterm
-PATH=$HOME/.local/bin:$PATH
 include ~/.config/power10k_themes/.zsh-theme-gruvbox-material-dark
-set vi-ins-mode-string \1\e[5 q\2
-set vi-cmd-mode-string \1\e[2 q\2
