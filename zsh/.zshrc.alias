@@ -10,28 +10,30 @@ function current_repository() {
   ref=$(git rev-parse --short HEAD 2> /dev/null) || return
   echo $(git remote -v | cut -d':' -f 2)
 }
+export DOTFILES="~/.dotfiles"
+export NVIMDIR="$DOTFILES/nvim/.config/nvim"
 # these aliases take advantage of the previous function
 alias ggpull='git pull origin $(current_branch)'
 alias ggpur='git pull --rebase origin $(current_branch)'
 alias ggpush='git push origin $(current_branch)'
 alias ggpnp='git pull origin $(current_branch) && git push origin $(current_branch)'
-alias gs="nvim -c 'G'"
+alias gs="nvim . -c 'G'"
 alias ll=" ls -la"
 alias ggdev=" git checkout master && git branch -D develop && git fetch origin develop && git switch develop"
 
 #Dot file bare git repo alias
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-alias zshrc="$EDITOR ~/.dotfiles/zsh/.zshrc"
+alias zshrc="$EDITOR ~/.dotfiles/zsh/.zshrc +RestoreSession"
 alias zalias="$EDITOR ~/.dotfiles/zsh/.zshrc.alias" 
 alias zshralias="nvim ~/.dotfiles/zsh/.zshrc.alias"
 alias zshplugins="$EDITOR ~/.dotfiles/zsh/.zsh-plugins.zsh"
 alias vimkeys="$EDITOR ~/.dotfiles/nvim/.config/nvim/plugin/keymaps.vim"
-alias initvim="$EDITOR ~/.dotfiles/nvim/.config/nvim/init.vim"
-alias vimrc="$EDITOR ~/.dotfiles/vim/.vimrc"
+alias initvim="cd $NVIMDIR && $EDITOR init.vim "
+alias vimrc="$EDITOR ~/.dotfiles/vim/.vimrc +RestoreSession"
 alias zshhistory="$EDITOR ~/.zsh_history"
 alias vs_settings=" "
-alias tconf="$EDITOR ~/.dotfiles/tmux/.tmux.conf ~/.dotfiles/bin/.local/bin/tmux-sessionizer"
+alias tmconf="$EDITOR ~/.dotfiles/tmux/.tmux.conf ~/.dotfiles/bin/.local/bin/tmux-sessionizer"
 alias tsess="$EDITOR  ~/.dotfiles/tmux/.tmux.conf ~/.dotfiles/bin/.local/bin/tmux-sessionizer"
 #Dirs ZSH alias
 alias d='dirs -v | head -10'

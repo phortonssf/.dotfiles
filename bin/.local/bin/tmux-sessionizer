@@ -1,23 +1,39 @@
-#!/usr/bin/env bash 
 #!/bin/sh
-if [[ $# -eq 1 ]]; then
+if [ $# -eq 1 ]; then
     selected=$1
+    selected_name=$(basename "$selected" | tr . _)
 fi
-
-
-if [[ -z $selected ]]; then
+if [ -z $selected ] || [ "$TMUX_SESSION" = "$selected_name" ]; then
     exit 0
 fi
-selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
-if ! tmux has-session -t $selected_name 2> /dev/null; then
+
+new_tmux_session () {
     tmux new-session -s $selected_name -c $selected -n $selected_name  -d
-    tmux send-keys -t $selected_name 'nvim' Enter
-    tmux neww -t $selected_name -n zsh -c $selected
+    tmux neww -t $selected_name:2 -n zsh -c $selected -n zsh 
+}
+set_tmux_env () {
+    tmux set-environment -g TMUX_SESSION ${selected_name} 
+}
+
+
+if ! tmux has-session -t $selected_name 2> /dev/null; then
+    new_tmux_session
+    set_tmux_env
 fi
 
+if [ -z $TMUX_PREV_SESSION  ]; then
+    tmux set-environement -g TMUX_PREV_SESSION $TMUX_SESSION
+fi
 if [[ -z $TMUX ]]; then
+    tmux set-environment -g TMUX_PREV_SESSION $TMUX_SESSION 
+    set_tmux_env
     tmux attach-session -t $selected_name:1
+    tmux send-keys -t $selected_name "nvim" Enter
+      
 else
+    tmux set-environment -g TMUX_PREV_SESSION $TMUX_SESSION
+    set_tmux_env
     tmux switch-client -t $selected_name:1
+    tmux send-keys -t $selected_name "nvim" Enter
 fi

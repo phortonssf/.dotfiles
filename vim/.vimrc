@@ -1,4 +1,4 @@
-syntax on
+Syntax on
 filetype plugin on
 
 
@@ -42,4 +42,3 @@ augroup numbertoggle
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
-
