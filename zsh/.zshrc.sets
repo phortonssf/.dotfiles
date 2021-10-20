@@ -7,9 +7,9 @@ set show-all-if-unmodified On
 set visible-stats On
 
 # Sets prompt
-set show-mode-in-prompt on
-set vi-cmd-mode-string "\1\e[1 q\2"
-set vi-ins-mode-string "\1\e[5 q\2"
+#set show-mode-in-prompt on
+# set vi-cmd-mode-string "\1\e[1 q\2"
+#set vi-ins-mode-string "\1\e[5 q\2"
 
 # setopt histignorealldups sharehistory
 setopt histignorespace
@@ -22,3 +22,4 @@ setopt auto_cd
 
 unset zle_bracketed_paste
 unset LIBGL_ALWAYS_INDIRECT
+

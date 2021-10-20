@@ -26,6 +26,7 @@ plugins=(
   vi-mode
   zsh-autosuggestions
   zsh-syntax-highlighting
+  zsh-vim-mode
   )
 # bindkey -s jj '\e'
 # bindkey jj vi-cmd-mode

@@ -1,4 +1,3 @@
-export PATH=$PATH:/usr/local/go/bin
 export BROWSER=none
 
 # dont require cd to change dir
@@ -18,6 +17,8 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 export HISTORY_IGNORE="(ls|cat|AWS|SECRET|cd|less|zsh|history)"
 
+
+export KEYTIMEOUT=20
 # confirmations, etc.) must go above this block; everything else may go below.
 #
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -109,7 +110,6 @@ function expand-or-complete-or-list-files() {
 fi
                                                         }
 zle -N expand-or-complete-or-list-files
-export KEYTIMEOUT=14
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -124,8 +124,6 @@ fi
 
 PATH=$HOME/.local/bin:$PATH
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # use ripgrep with FZF
 if type rg &> /dev/null; then
@@ -133,4 +131,103 @@ if type rg &> /dev/null; then
       export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
 
+
 include ~/.config/power10k_themes/.zsh-theme-gruvbox-material-dark
+
+#Works but breaks the box,givs you solid and blinking fine
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne "\[\e[0 q\e[?12l\]" 
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne '\e[5 q\e]12;#7fcac4\a' # Use beam shape cursor on startup.
+}
+zle -N zle-line-init
+echo -ne '\e[5 q\e]12;\#7fcac4\a' # Use beam shape cursor on startup.
+# In .zshrc
+
+
+# was meh
+#source "$HOME/.oh-my-zsh/plugins/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
+
+#MODE_CURSOR_VIINS="#00ff00 blinking bar"
+
+#MODE_CURSOR_REPLACE="$MODE_CURSOR_VIINS #ff0000"
+# MODE_CURSOR_VICMD="green block"
+# MODE_CURSOR_SEARCH="#ff00ff steady underline"
+# MODE_CURSOR_VISUAL="$MODE_CURSOR_VICMD steady bar"
+# MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
+
+
+### CI) in terminal 
+# The following is an example of how to enable this:
+     autoload -U select-bracketed
+     zle -N select-bracketed
+     for m in visual viopp; do
+    for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+        bindkey -M $m $c select-bracketed
+    done
+done
+
+setopt localoptions noksharrays
+
+local style=${${1:-$KEYS}[1]} matching="(){}[]<>bbBB"
+local -i find=${NUMERIC:-1} idx=${matching[(I)[${${1:-$KEYS}[2]}]]}%9
+(( idx )) || return 1 # no corresponding closing bracket
+local lmatch=${matching[1 + ((idx-1) & ~1)]}
+local rmatch=${matching[1 + ((idx-1) | 1)]}
+local -i start=CURSOR+1 end=CURSOR+1 rfind=find
+
+[[ $BUFFER[start] = "$rmatch" ]] && (( start--, end-- ))
+if (( REGION_ACTIVE  && MARK != CURSOR)); then
+  (( MARK < CURSOR && (start=end=MARK+1) ))
+  local -i origstart=start-1
+  [[ $style = i ]] && (( origstart-- ))
+fi
+
+while (( find )); do
+  for (( ; find && start; --start )); do
+    case $BUFFER[start] in
+      "$lmatch") (( find-- )) ;;
+      "$rmatch") (( find++ )) ;;
+    esac
+  done
+
+  (( find )) && return 1 # opening bracket not found
+
+  while (( rfind && end++ < $#BUFFER )); do
+    case $BUFFER[end] in
+      "$lmatch") (( rfind++ )) ;;
+      "$rmatch") (( rfind-- )) ;;
+    esac
+  done
+
+  (( rfind )) && return 1 # closing bracket not found
+
+  (( REGION_ACTIVE && MARK != CURSOR && start >= origstart &&
+    ( find=rfind=${NUMERIC:-1} ) ))
+done
+
+[[ $style = i ]] && (( start++, end-- ))
+(( REGION_ACTIVE = !!REGION_ACTIVE ))
+[[ $KEYMAP = vicmd ]] && (( REGION_ACTIVE && end-- ))
+MARK=$start
+CURSOR=$end
+
+
+#### CURSOR STUFF
+
+# Remove mode switching delay.
+KEYTIMEOUT=5
+
