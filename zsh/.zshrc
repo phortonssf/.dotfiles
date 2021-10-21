@@ -1,5 +1,5 @@
 export BROWSER=none
-
+export PATH=$PATH:~/bin
 # dont require cd to change dir
 export PATH=~/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:$PATH 
