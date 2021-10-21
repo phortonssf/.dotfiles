@@ -1,3 +1,4 @@
 *.log
 todo.md
 og.nvim/
+**/Session.vim
