@@ -4,7 +4,7 @@ export PATH=$PATH:~/bin
 export PATH=~/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:$PATH 
 export PATH=$HOME/.local/bin/lvim:$PATH
-
+export VIMSESSION=-S
 # ZSH_DISABLE_COMPFIX=true:
 export PATH=/home/phortonssf/.local/bin:$PATH
 export PATH=$PATH:/mnt/c/Windows/System32

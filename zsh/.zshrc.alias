@@ -24,7 +24,7 @@ alias ggdev=" git checkout master && git branch -D develop && git fetch origin d
 #Dot file bare git repo alias
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-alias zshrc="$EDITOR ~/.dotfiles/zsh/.zshrc +RestoreSession"
+alias zshrc="cd ~/.dotfiles/zsh && $EDITOR $VIMSESSION"
 alias zalias="$EDITOR ~/.dotfiles/zsh/.zshrc.alias" 
 alias zshralias="nvim ~/.dotfiles/zsh/.zshrc.alias"
 alias zshplugins="$EDITOR ~/.dotfiles/zsh/.zsh-plugins.zsh"
