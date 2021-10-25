@@ -1,3 +1,5 @@
+source tmux-startup
+
 export BROWSER=none
 export PATH=$PATH:~/bin
 # dont require cd to change dir
@@ -17,6 +19,11 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 export HISTORY_IGNORE="(ls|cat|AWS|SECRET|cd|less|zsh|history)"
 
+# export ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true' 
+# export ZSH_SYSTEM_CLIPBOARD_SELECTION='CLIPBOARD'
+
+typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
+typeset -g ZSH_SYSTEM_CLIPBOARD_SELECTION='PRIMARY'
 
 export KEYTIMEOUT=20
 # confirmations, etc.) must go above this block; everything else may go below.
