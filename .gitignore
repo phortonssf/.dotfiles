@@ -2,3 +2,7 @@
 todo.md
 og.nvim/
 **/Session.vim
+./tags*
+tags
+tags.lock
+tags.temp
