@@ -239,3 +239,5 @@ CURSOR=$end
 # Remove mode switching delay.
 KEYTIMEOUT=5
 
+
+alias luamake=/home/digitaldive/lua-language-server/3rd/luamake/luamake
