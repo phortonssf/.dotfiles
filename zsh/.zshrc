@@ -1,5 +1,4 @@
-source tmux-startup
-
+source ~/.local/bin/tmux-startup
 export BROWSER=none
 export PATH=$PATH:~/bin
 # dont require cd to change dir
