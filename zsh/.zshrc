@@ -4,7 +4,7 @@ export BROWSER=none
 export PATH=$PATH:~/bin
 # dont require cd to change dir
 export PATH=~/usr/bin:/bin:/usr/sbin:/sbin:$PATH
-export PATH=$HOME/bin:/usr/local/bin:$PATH 
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin/lvim:$PATH
 export VIMSESSION=-S
 # ZSH_DISABLE_COMPFIX=true:
@@ -17,10 +17,10 @@ export ZSH="/home/digitaldive/.oh-my-zsh"
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
-
+export PATH=$HOME/.npm-global/bin/:$PATH
 export HISTORY_IGNORE="(ls|cat|AWS|SECRET|cd|less|zsh|history)"
 
-# export ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true' 
+# export ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
 # export ZSH_SYSTEM_CLIPBOARD_SELECTION='CLIPBOARD'
 
 typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
