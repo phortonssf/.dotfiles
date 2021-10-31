@@ -147,6 +147,7 @@ include ~/.config/power10k_themes/.zsh-theme-gruvbox-material-dark
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||
      [[ $1 = 'block' ]]; then
+     # Resets to terminal cursor
     echo -ne "\[\e[0 q\e[?12l\]" 
   elif [[ ${KEYMAP} == main ]] ||
        [[ ${KEYMAP} == viins ]] ||
