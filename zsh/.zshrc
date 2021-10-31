@@ -37,7 +37,7 @@ include () {
    if [[ -f "$1" ]] && source "$1"
 }
 # REMOVES EXECUTE
-bindkey -ar ":" 
+bindkey -ar ":"
 
 
 autoload -Uz promptinit
