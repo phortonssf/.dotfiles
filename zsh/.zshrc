@@ -49,7 +49,7 @@ if [[ -f /bin/nvim ]]
 fi
 ##### NEEDS TO LOAD BEFORE SOURCING OH-MY-ZSH  #######
 
-eval $(keychain --eval .ssh/id_rsa)
+# eval $(keychain --eval .ssh/id_rsa)
 
 #set keymap vi-command Shift-Enter: autosuggest-accept-line
 #set keymap vi-command Alt-l: autosuggest-execute
