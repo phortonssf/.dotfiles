@@ -62,7 +62,8 @@ require('packer').startup(function()
   -- Creates paired 
   use 'windwp/nvim-autopairs'
 
-
+  -- adds more text targets (, etc
+  use 'wellle/target.vim'
   -- themes
   use 'glepnir/zephyr-nvim'
   use 'sainnhe/gruvbox-material'
