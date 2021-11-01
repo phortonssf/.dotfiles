@@ -24,8 +24,8 @@ alias -- -="cd -"
 #Dot file bare git repo alias
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-alias winstartup="$EDITOR /mnt/c/Users/Pedro/AppData/Roaming/Microsoft/Windows/Start\ Menu/Programs/Startup -S"
-alias zshrc="cd ~/.dotfiles/zsh && $EDITOR $VIMSESSION"
+alias winstartup="$EDITOR /mnt/c/Users/Pedro/AppData/Roaming/Microsoft/Windows/Start\ Menu/Programs/Startup" 
+alias zshrc="cd ~/.dotfiles/zsh && $EDITOR -S"
 alias zalias="$EDITOR ~/.dotfiles/zsh/.zshrc.alias" 
 alias zshralias="nvim ~/.dotfiles/zsh/.zshrc.alias"
 alias zshplugins="$EDITOR ~/.dotfiles/zsh/.zsh-plugins.zsh"
