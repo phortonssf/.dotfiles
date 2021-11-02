@@ -18,6 +18,11 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.npm-global/bin/:$PATH
 export HISTORY_IGNORE="(ls|cat|AWS|SECRET|cd|less|zsh|history)"
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # export ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
 # export ZSH_SYSTEM_CLIPBOARD_SELECTION='CLIPBOARD'
