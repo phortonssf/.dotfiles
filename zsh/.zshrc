@@ -2,6 +2,7 @@ source ~/.local/bin/tmux-startup
 export BROWSER=none
 export PATH=$PATH:~/bin
 # dont require cd to change dir
+export PATH=/usr/local/bin/:$PATH
 export PATH=~/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin/lvim:$PATH
@@ -19,6 +20,7 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.npm-global/bin/:$PATH
 export HISTORY_IGNORE="(ls|cat|AWS|SECRET|cd|less|zsh|history)"
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+export AWS_VAULT_BACKEND="pass"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
