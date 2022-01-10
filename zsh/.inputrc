@@ -1,6 +1,3 @@
-#$include /etc/inputrc
-#"\C-p":history-search-backward
-#"\C-n":history-search-forward
 
 # esc insert mode with jj or kk 
 bindkey -M viins 'kk' vi-cmd-mode
@@ -16,32 +13,13 @@ bindkey "\e[B" history-beginning-search-forward
 bindkey -r '^R'
 bindkey -r '^S'
 bindkey -r '^J'
-# bindkey -r vicmd ':'
-#
+
 # Vi Mode
 set editing-mode vi
  
-#$if mode=vi
-#  set keymap vi-command
-#  "gg": beginning-of-history
-#  "G": end-of-history
-#  set keymap vi-insert
-#  "\C-w": backward-kill-word
-#  "\C-p": history-search-backward
-#$endif
-#set keymap vi-command
-#Control-l: clear-screen
-#set keymap vi-insert
-#Control-l: clear-screen
-#set vi-ins-mode-string '\1\e[6 q\2'
-#set vi-cmd-mode-string \1\e[2 q\2
-
 # Fix backspace bug when switching modes
 bindkey "^?" backward-delete-char
 
-
-#bind to tab
-#bindkey '^I' expand-or-complete-or-list-files
 bindkey -v
 
 #binds ctrl-enter
