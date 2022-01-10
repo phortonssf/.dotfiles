@@ -1,13 +1,18 @@
 #$include /etc/inputrc
 #"\C-p":history-search-backward
 #"\C-n":history-search-forward
+
+# esc insert mode with jj or kk 
 bindkey -M viins 'kk' vi-cmd-mode
 bindkey -M viins 'jj' vi-cmd-mode
+
+# ctrl-space accept next word in autosuggestion
+bindkey '^@' forward-word
+
 # For History searching
 bindkey "^R" history-incremental-search-backward
 bindkey "\e[A" history-beginning-search-backward
 bindkey "\e[B" history-beginning-search-forward
-bindkey '^ ' autosuggest-accept
 bindkey -r '^R'
 bindkey -r '^S'
 bindkey -r '^J'
@@ -36,20 +41,38 @@ bindkey "^?" backward-delete-char
 
 
 #bind to tab
-bindkey '^I' expand-or-complete-or-list-files
+#bindkey '^I' expand-or-complete-or-list-files
 bindkey -v
 
-bindkey '^[OM' auto-suggest-execute 
-# Use vim keys in tab complete menu:
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'left' vi-backward-char
-bindkey -M menuselect 'down' vi-down-line-or-history
-bindkey -M menuselect 'up' vi-up-line-or-history
-bindkey -M menuselect 'right' vi-forward-char
+#binds ctrl-enter
+bindkey ^J autosuggest-execute
 
+# # Use vim keys in tab complete menu:
+# bindkey -M menuselect 'h' vi-backward-char
+# bindkey -M menuselect 'j' vi-down-line-or-history
+# bindkey -M menuselect 'k' vi-up-line-or-history
+# bindkey -M menuselect 'l' vi-forward-char
+# bindkey -M menuselect 'left' vi-backward-char
+# bindkey -M menuselect 'down' vi-down-line-or-history
+# bindkey -M menuselect 'up' vi-up-line-or-history
+# bindkey -M menuselect 'right' vi-forward-char
+
+prevDir(){
+  cd -
+  zle accept-line
+}
+
+zle -N prevDir
+bindkey '^^' prevDir
+
+cheat_sheet(){
+  tmux-ch.sh
+  zle accept-line
+}
+zle -N cheat_sheet
+
+# ctrl + / opens cheatsheet
+bindkey '^_' cheat_sheet
 # Change cursor shape for different vi modes.
 #function zle-keymap-select {
 #  if [[ ${KEYMAP} == vicmd ]] ||
