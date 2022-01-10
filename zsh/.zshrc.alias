@@ -1,5 +1,6 @@
 
 
+alias luamake=/home/digitaldive/lua-language-server/3rd/luamake/luamake
 function current_branch() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || \
   ref=$(git rev-parse --short HEAD 2> /dev/null) || return

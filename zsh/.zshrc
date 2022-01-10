@@ -19,26 +19,38 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.npm-global/bin/:$PATH
 export HISTORY_IGNORE="(ls|cat|AWS|SECRET|cd|less|zsh|history)"
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 export AWS_VAULT_BACKEND="pass"
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# Remove mode switching delay.
+export KEYTIMEOUT=18
+
+## Preferred editor for local and remote sessions
+  if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='vim'
+  else
+    export EDITOR='nvim'
+  fi
+
+##Load nvim as editor otherwise vim
+if [[ -f /bin/nvim ]]
+  then EDITOR=nvim
+  else EDITOR=vim
+fi
+ZSH_THEME="powerlevel10k/powerlevel10k"
 # export ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
 # export ZSH_SYSTEM_CLIPBOARD_SELECTION='CLIPBOARD'
-
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
 typeset -g ZSH_SYSTEM_CLIPBOARD_SELECTION='PRIMARY'
 
-export KEYTIMEOUT=20
 # confirmations, etc.) must go above this block; everything else may go below.
 #
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-# Include file if it exists
+## Include file if it exists
 include () {
    if [[ -f "$1" ]] && source "$1"
 }
@@ -70,67 +82,10 @@ eval "$(dircolors -b)"
 # MODE_CURSOR_VISUAL="$MODE_CURSOR_VICMD steady bar"
 # MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
 
+bindkey \^U up-history
 
-### CI) in terminal 
-# The following is an example of how to enable this:
-     autoload -U select-bracketed
-     zle -N select-bracketed
-     for m in visual viopp; do
-    for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
-        bindkey -M $m $c select-bracketed
-    done
-done
-
-setopt localoptions noksharrays
-
-local style=${${1:-$KEYS}[1]} matching="(){}[]<>bbBB"
-local -i find=${NUMERIC:-1} idx=${matching[(I)[${${1:-$KEYS}[2]}]]}%9
-(( idx )) || return 1 # no corresponding closing bracket
-local lmatch=${matching[1 + ((idx-1) & ~1)]}
-local rmatch=${matching[1 + ((idx-1) | 1)]}
-local -i start=CURSOR+1 end=CURSOR+1 rfind=find
-
-[[ $BUFFER[start] = "$rmatch" ]] && (( start--, end-- ))
-if (( REGION_ACTIVE  && MARK != CURSOR)); then
-  (( MARK < CURSOR && (start=end=MARK+1) ))
-  local -i origstart=start-1
-  [[ $style = i ]] && (( origstart-- ))
-fi
-
-while (( find )); do
-  for (( ; find && start; --start )); do
-    case $BUFFER[start] in
-      "$lmatch") (( find-- )) ;;
-      "$rmatch") (( find++ )) ;;
-    esac
-  done
-
-  (( find )) && return 1 # opening bracket not found
-
-  while (( rfind && end++ < $#BUFFER )); do
-    case $BUFFER[end] in
-      "$lmatch") (( rfind++ )) ;;
-      "$rmatch") (( rfind-- )) ;;
-    esac
-  done
-
-  (( rfind )) && return 1 # closing bracket not found
-
-  (( REGION_ACTIVE && MARK != CURSOR && start >= origstart &&
-    ( find=rfind=${NUMERIC:-1} ) ))
-done
-
-[[ $style = i ]] && (( start++, end-- ))
-(( REGION_ACTIVE = !!REGION_ACTIVE ))
-[[ $KEYMAP = vicmd ]] && (( REGION_ACTIVE && end-- ))
-MARK=$start
-CURSOR=$end
+#KEYTIMEOUT=5
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+include ~/.config/power10k_themes/.zsh-theme-gruvbox-material-dark
 
 
-#### CURSOR STUFF
-
-# Remove mode switching delay.
-KEYTIMEOUT=5
-
-
-alias luamake=/home/digitaldive/lua-language-server/3rd/luamake/luamake
