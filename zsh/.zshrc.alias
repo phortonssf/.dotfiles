@@ -48,9 +48,11 @@ alias 6='cd -6'
 alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
+
+# galley aliases
 alias tf='aws-vault exec galley -- terraform'
 alias tfplan='aws-vault exec galley -- terraform plan -var-file="secrets.tfvars"'
 alias tfapply='aws-vault exec galley -- terraform apply -var-file="secrets.tfvars"'
 
 alias awsconf='$EDITOR ~/.aws/*'
-
+alias p10kupdate='git -C ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k pull'
