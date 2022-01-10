@@ -31,10 +31,9 @@ plugins=(
   zsh-autosuggestions
   )
  autoload -U compinit && compinit 
+ source $HOME/.oh-my-zsh/custom/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
  source $ZSH/oh-my-zsh.sh
 
-zstyle ':completion::*:ls::*' fzf-completion-opts --preview='eval head {1}'
-source $HOME/.oh-my-zsh/custom/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 
 ## use ripgrep with FZF
 if type rg &> /dev/null; then
@@ -50,6 +49,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # completion rules
+zstyle ':completion::*:ls::*' fzf-completion-opts --preview='eval head {1}'
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
