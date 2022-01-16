@@ -89,3 +89,6 @@ bindkey \^U up-history
 include ~/.config/power10k_themes/.zsh-theme-gruvbox-material-dark
 
 
+# Use nvim as manpager `:h Man`
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999
