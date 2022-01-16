@@ -9,32 +9,52 @@ if [ -z $selected ] || [ "$TMUX_SESSION" = "$selected_name" ]; then
 fi
 tmux_running=$(pgrep tmux)
 
-new_tmux_session () {
-    tmux new-session -s $selected_name -c $selected -n $selected_name  -d
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    tmux new-session -s $selected_name -c $selected
+    tmux send-keys -t $selected_name "nvim -S" Enter
     tmux neww -t $selected_name:2 -n zsh -c $selected -n zsh 
-}
-set_tmux_env () {
-    tmux set-environment -g TMUX_SESSION ${selected_name} 
-}
-
+    tmux attach-session -t $selected_name:1
+    exit 0
+fi
 
 if ! tmux has-session -t $selected_name 2> /dev/null; then
-    new_tmux_session
-    set_tmux_env
+   tmux new-session -ds $selected_name -c $selected -n $selected_name
+   tmux send-keys -t $selected_name "nvim -S" Enter
+   tmux neww -t $selected_name:2 -c $selected -n zsh 
 fi
 
-if [ -z $TMUX_PREV_SESSION  ]; then
-    tmux set-environement -g TMUX_PREV_SESSION $TMUX_SESSION
-fi
-if [[ -z $TMUX ]]; then
-    tmux set-environment -g TMUX_PREV_SESSION $TMUX_SESSION 
-    set_tmux_env
-    tmux attach-session -t $selected_name:1
-    tmux send-keys -t $selected_name "nvim" Enter
+tmux switch-client -t $selected_name
+# new_tmux_session () {
+#     tmux new-session -s $selected_name -c $selected -n $selected_name  -d
+#     tmux neww -t $selected_name:2 -n zsh -c $selected -n zsh 
+# }
+# set_tmux_env () {
+#     tmux set-environment -g TMUX_SESSION ${selected_name} 
+# }
+
+
+# if ! tmux has-session -t $selected_name 2> /dev/null; then
+#     new_tmux_session
+#     set_tmux_env
+# fi
+
+# if [ -z $TMUX_PREV_SESSION  ]; then
+#     tmux set-environement -g TMUX_PREV_SESSION $TMUX_SESSION
+# fi
+# if [[ -z $TMUX ]]; then
+    
+#   tmux set-environment -g TMUX_PREV_SESSION $TMUX_SESSION 
+#    set_tmux_env
+#    tmux attach-session -t $selected_name:1
+#    tmux send-keys -t $selected_name "nvim" Enter
+#    exit 0
       
-else
-    tmux set-environment -g TMUX_PREV_SESSION $TMUX_SESSION
-    set_tmux_env
-    tmux switch-client -t $selected_name:1
-    tmux send-keys -t $selected_name "nvim" Enter
-fi
+
+# else
+    
+#   tmux set-environment -g TMUX_PREV_SESSION $TMUX_SESSION
+#   set_tmux_env
+#   tmux switch-client -t $selected_name:1
+#   tmux send-keys -t $selected_name "nvim" Enter
+
+# fi
