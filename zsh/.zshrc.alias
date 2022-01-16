@@ -55,5 +55,5 @@ alias tfplan='aws-vault exec galley -- terraform plan -var-file="secrets.tfvars"
 alias tfapply='aws-vault exec galley -- terraform apply -var-file="secrets.tfvars"'
 alias galleyvpn="sudo openvpn --config ~/.openvpn.confs/galley/aws_galleyMaster_config.ovpn --key ~/.openvpn.confs/galley/phorton.galleysolutions.com.key --cert ~/.openvpn.confs/galley/phorton.galleysolutions.com.crt"
 
-alias awsconf='$EDITOR ~/.aws/*'
+alias awsconf='$EDITOR ~/.aws/config ~/.aws/credentials'
 alias p10kupdate='git -C ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k pull'
