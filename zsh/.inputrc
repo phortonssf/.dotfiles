@@ -50,4 +50,10 @@ cheat_sheet(){
 zle -N cheat_sheet
 
 # ctrl + / opens cheatsheet
-bindkey '^_' cheat_sheet
+bindkey -a '^_' cheat_sheet
+bindkey  '^_' cheat_sheet
+
+# ctr-e open command in vim
+bindkey '^e' edit-command-line
+bindkey -a '^e' edit-command-line
+
