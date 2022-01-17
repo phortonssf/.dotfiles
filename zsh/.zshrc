@@ -92,3 +92,15 @@ include ~/.config/power10k_themes/.zsh-theme-gruvbox-material-dark
 # Use nvim as manpager `:h Man`
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
+
+# move and create directories
+function mvp ()
+{
+    dir="$2" # Include a / at the end to indicate directory (not filename)
+    tmp="$2"; tmp="${tmp: -1}"
+    [[ "$tmp" != "/" ]] && dir="$(dirname "$2")"
+    [[ -a "$dir" ]] ||
+    mkdir -p "$dir" &&
+    mv "$@"
+}
+
