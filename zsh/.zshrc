@@ -104,6 +104,35 @@ function mvp ()
     mv "$@"
 }
 
+function _paste {
+    # echo "Executing: $BUFFER"
+   # local paste = eval powershell.exe -command "Get-Clipboard" </dev/null
+   local cmd="powershell.exe Get-Clipboard 2> /dev/null" 
+   local paste="$(eval $cmd )"
+   # echo $paste
+    printf '%s' $pate
+   # RBUFFER=$paste
+   # echo $paste
+
+  # return
+}
+# zle -N _paste
+# bindkey -a '^y' _paste
+# bindkey -a 'd' '"_d
+# vi-append-x-selection () { RBUFFER=$( powershell.exe -command "Get-Clipboard" </dev/null)}
+# zle -N vi-append-x-selection
+# bindkey -a '^X' vi-append-x-selection
+ # bindkey -a '^X' _paste 
+
+# zvm_vi_yank () {
+# 	zvm_yank
+# 	printf %s "${CUTBUFFER}" | clip.exe
+# 	zvm_exit_visual_mode
+# }
+
+# zle  -N zvm_vi_yank
+# bindkey -a '^x' zvm_vi_yank
+
 # ZVM_VI_INSERT_ESCAPE_BINDKEY='^['
 # ZVM_VI_INSERT_ESCAPE_BINDKEY='kk^
 
