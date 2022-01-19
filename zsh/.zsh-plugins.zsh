@@ -30,10 +30,11 @@ plugins=(
   zsh-completions
   zsh-autosuggestions
   )
+
  autoload -U compinit && compinit 
- source $HOME/.oh-my-zsh/custom/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
  source $ZSH/oh-my-zsh.sh
 
+ source $HOME/.oh-my-zsh/custom/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 
 ## use ripgrep with FZF
 if type rg &> /dev/null; then
@@ -66,8 +67,11 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+# only aws command completion 
+# zstyle ':completion:*:*:aws' fzf-search-display true
 # adds completions for cli apps
 complete -o nospace -C ~/bin/terraform terraform
 source <(kubectl completion zsh)
 complete -C aws_completer aws
 
+zstyle ':completion:*:*:git:*' fzf-search-display true
