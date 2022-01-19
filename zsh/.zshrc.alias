@@ -107,3 +107,5 @@ my_remove_last_history_entry() {
 }
 # make parent directoris
 alias mkdir='mkdir -pv'
+# myip alias, which prints your current public IP address to the terminal
+alias myip='curl http://ipecho.net/plain; echo'
