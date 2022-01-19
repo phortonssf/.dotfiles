@@ -57,3 +57,7 @@ bindkey  '^_' cheat_sheet
 bindkey '^e' edit-command-line
 bindkey -a '^e' edit-command-line
 
+
+# adds Y yank to end of line
+bindkey -a -s 'Y' 'y$'
+ZVM_VI_INSERT_ESCAPE_BINDKEY='kk'
