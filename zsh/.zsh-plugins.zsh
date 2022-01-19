@@ -20,7 +20,7 @@ plugins=(
   dircycle
 # colorize
   ssh-agent
-  vi-mode
+  zsh-vi-mode
   zsh-syntax-highlighting
   zsh-vim-mode
   zsh-system-clipboard
