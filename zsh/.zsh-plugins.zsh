@@ -33,7 +33,7 @@ plugins=(
 
  autoload -U compinit && compinit 
  source $ZSH/oh-my-zsh.sh
-
+ # sourc $HOME/.oh-my-sh/custom/plugins/evil-registers/evil-registers.zsh
  source $HOME/.oh-my-zsh/custom/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 
 ## use ripgrep with FZF
@@ -75,3 +75,4 @@ source <(kubectl completion zsh)
 complete -C aws_completer aws
 
 zstyle ':completion:*:*:git:*' fzf-search-display true
+# zstyle :zle:evil-registers:'[A-Za-z%#]' editor nvim
