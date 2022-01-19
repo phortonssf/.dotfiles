@@ -104,3 +104,13 @@ function mvp ()
     mv "$@"
 }
 
+# ZVM_VI_INSERT_ESCAPE_BINDKEY='^['
+# ZVM_VI_INSERT_ESCAPE_BINDKEY='kk^
+
+
+#### TODO add more escape keys
+# The plugin will auto execute this zvm_after_init function
+function zvm_after_init() {
+   zvm_bindkey viins 'jj' zvm_exit_insert_mode
+}
+# zvm_after_init_commands+=("bindkey -M viins 'jj' vi-cmd-mode")
