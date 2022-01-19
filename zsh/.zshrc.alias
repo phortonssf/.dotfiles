@@ -111,3 +111,5 @@ alias mkdir='mkdir -pv'
 alias myip='curl http://ipecho.net/plain; echo'
 # out linux distro
 alias distro='cat /etc/*-release'
+# git reset to head
+alias git-reset-head="git reset 'HEAD@{1}'"
