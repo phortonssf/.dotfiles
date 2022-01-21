@@ -5,6 +5,7 @@ if [ $# -eq 1 ]; then
 fi
 if [ -z $selected ] || [ "$TMUX_SESSION" = "$selected_name" ]; then
     tmux new-session -s main
+    tmux attach-session -t main -c /home/digitaldive
     exit 0
 fi
 tmux_running=$(pgrep tmux)
