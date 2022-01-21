@@ -21,6 +21,9 @@ alias ggpnp='git pull origin $(current_branch) && git push origin $(current_bran
 alias gs="nvim  . -c 'G' -c 'call CloseAllBuffersButCurrent()'"
 alias ll=" ls -la"
 alias ggdev=" git checkout master && git branch -D develop && git fetch origin develop && git switch develop"
+
+alias gconf='nvim ~/.dotfiles/git/.gitconfig'
+
 alias -- -="cd -"
 #Dot file bare git repo alias
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
