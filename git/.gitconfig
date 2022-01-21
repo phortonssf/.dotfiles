@@ -7,3 +7,7 @@
 	outgoing = !git fetch && git log --oneline @{u}..
 	last = log -1 HEAD --stat
 	se = !git rev-list --all | xargs git grep -F
+[core]
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[interactive]
+	diffFilter = diff-so-fancy --patch
