@@ -1,0 +1,9 @@
+
+[user]
+	email = phorton@softstackfactory.com
+	name = Peter Horton
+[alias]
+	incoming = !git fetch && git log --oneline ..@{u}
+	outgoing = !git fetch && git log --oneline @{u}..
+	last = log -1 HEAD --stat
+	se = !git rev-list --all | xargs git grep -F
