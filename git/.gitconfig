@@ -7,6 +7,17 @@
 	outgoing = !git fetch && git log --oneline @{u}..
 	last = log -1 HEAD --stat
 	se = !git rev-list --all | xargs git grep -F
+  rhp = git reset --hard origin/$(current_branch) 
+  cnoc = git commit -a --amend --no-edit
+  restfile = git reset @~ "$@" && git commit --amend --no-edit
+  forcep =  git push --force-with-lease origin $(current_branch) 
+  nb = git checkout -b
+  del = branch -D
+  br =  branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+  co = checkout
+  c = commit -m
+  l = log --graph --pretty='format:%C(red)%d%C(reset) %C(yellow)%h%C(reset) %ar %C(green)%aN%C(reset) %s'
+  rename = branch -m
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [interactive]
