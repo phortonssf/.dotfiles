@@ -119,5 +119,66 @@ alias git-reset-head="git reset 'HEAD@{1}'"
 
 # copy previous out put to clipboard
 alias co='echo `fc -e -` | clip.exe'
-
 alias colors='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done'
+# fshow - git commit browser
+# sc() {
+#   git log --graph --color=always \
+#       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+#   fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+#       --bind "ctrl-m:execute:
+#                 (grep -o '[a-f0-9]\{7\}' | head -1 |
+#                 xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+#                 {}
+# FZF-EOF"
+# }
+
+logshow() {
+    cat -n $1 | fzf --reverse --no-sort --tiebreak=index \
+                    --bind "ctrl-m:execute:echo {} | grep -Eo "[0-9]+" | head -n 1 | xargs -Ireplace less -N +replaceg $1"
+}
+git-fshow() {
+	local g=(
+		git log
+		--graph
+		--format='%C(auto)%h%d %s %C(white)%C(bold)%cr'
+		--color=always
+		"$@"
+	)
+
+	local fzf=(
+		fzf
+    --height 100%
+		--ansi
+		--reverse
+		--tiebreak=index
+		--no-sort
+		--bind=ctrl-s:toggle-sort
+		--preview 'f() { set -- $(echo -- "$@" | grep -o "[a-f0-9]\{7\}"); [ $# -eq 0 ] || git show --color=always $1; }; f {}'
+	)
+	$g | $fzf
+}
+gitshow () 
+{
+  git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"  | \
+   fzf --ansi --no-sort --reverse --tiebreak=index --preview \
+   'f() { set -- $(echo -- "$@" | grep -o "[a-f0-9]\{7\}"); [ $# -eq 0 ] || git show --color=always $1 ; }; f {}' \
+   --bind "alt-v:execute:$_viewGitLogLineUnfancy | nvim -" \
+   --bind "j:down,k:up,alt-j:preview-down,alt-k:preview-up,ctrl-f:preview-page-down,ctrl-b:preview-page-up,q:abort,ctrl-m:execute:
+                (grep -o '[a-f0-9]\{7\}' | head -1 |
+                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+                {}
+FZF-EOF" --preview-window=right:60%
+}
+alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" "$@"'
+_gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
+_viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always % | diff-so-fancy'"
+_viewGitLogLineUnfancy="$_gitLogLineToHash | xargs -I % sh -c 'git show %'"
+gls() {
+    glNoGraph |
+        fzf --no-sort --reverse --tiebreak=index --no-multi \
+            --ansi --preview="$_viewGitLogLine" \
+                --header "enter to view, alt-y to copy hash, alt-v to open in vim" \
+                --bind "enter:execute:$_viewGitLogLine   | less -R" \
+                --bind "alt-v:execute:$_viewGitLogLineUnfancy | nvim -" \
+                --bind "alt-y:execute:$_gitLogLineToHash | xclip"
+}
