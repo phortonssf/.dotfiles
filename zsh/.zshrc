@@ -36,7 +36,7 @@ export KEYTIMEOUT=18
   fi
 
 ##Load nvim as editor otherwise vim
-if [[ -f /bin/nvim ]]
+if [[ -f /usr/local/bin/nvim ]]
   then EDITOR=nvim
   else EDITOR=vim
 fi
