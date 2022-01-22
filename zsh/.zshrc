@@ -10,7 +10,9 @@ export VIMSESSION=-S
 # ZSH_DISABLE_COMPFIX=true:
 export PATH=/home/phortonssf/.local/bin:$PATH
 export PATH=$PATH:/mnt/c/Windows/System32
+export WINPATH=/mnt/c/Users/Pedro
 export FZF_DEFAULT_OPTS='--height 100% --layout=reverse --border'
+export FZF_DEFAULT_COMMAND='rg --type f --hidden --follow --exclude .git'
 # Path to your oh-my-zsh installation
 export ZSH="/home/digitaldive/.oh-my-zsh"
 
