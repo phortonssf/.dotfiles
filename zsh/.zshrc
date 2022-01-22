@@ -86,7 +86,7 @@ bindkey \^U up-history
 
 #KEYTIMEOUT=5
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-include ~/.config/power10k_themes/.zsh-theme-gruvbox-material-dark
+# include ~/.config/power10k_themes/.zsh-theme-gruvbox-material-dark
 
 
 # Use nvim as manpager `:h Man`
