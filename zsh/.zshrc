@@ -141,5 +141,13 @@ function _paste {
 # The plugin will auto execute this zvm_after_init function
 function zvm_after_init() {
    zvm_bindkey viins 'jj' zvm_exit_insert_mode
+   source ~/.p10k.zsh
 }
 # zvm_after_init_commands+=("bindkey -M viins 'jj' vi-cmd-mode")
+export LS_COLORS='rs=0:no=00:mi=00:mh=00:ln=01;36:or=01;31:di=01;34:ow=04;01;34:st=34:tw=04;34:pi=01;33:so=01;33:do=01;33:bd=01;33:cd=01;33:su=01;35:sg=01;35:ca=01;35:ex=01;32:'
+
+alias luamake=/home/digitaldive/lua-language-server/3rd/luamake/luamake
+# include ~/.config/power10k_themes/.zsh-theme-gruvbox-material-dark
+
+# FZF COLORS from https://minsw.github.io/fzf-color-picker/
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#d0d0d0,bg:#121212,hl:#5f87af --color=fg+:#d0d0d0,bg+:#262626,hl+:#5fd7ff --color=info:#afaf87,prompt:#d7005f,pointer:#af5fff --color=marker:#87ff00,spinner:#af5fff,header:#87afaf'
