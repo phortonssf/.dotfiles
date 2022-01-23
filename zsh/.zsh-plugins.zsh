@@ -28,6 +28,7 @@ plugins=(
   docker
   zsh-completions
   zsh-autosuggestions
+  you-should-use
   )
 
  autoload -U compinit && compinit 
