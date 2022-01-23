@@ -138,6 +138,9 @@ function _paste {
 # ZVM_VI_INSERT_ESCAPE_BINDKEY='^['
 # ZVM_VI_INSERT_ESCAPE_BINDKEY='kk^
 
+# For completions to work, the above line must be added after compinit is called.
+#   You may have to rebuild your cache by running rm ~/.zcompdump*; compinit    .
+eval "$(zoxide init zsh)"
 
 #### TODO add more escape keys
 # The plugin will auto execute this zvm_after_init function
