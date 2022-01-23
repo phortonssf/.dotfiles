@@ -119,9 +119,14 @@ alias git-reset-head="git reset 'HEAD@{1}'"
 
 # copy previous out put to clipboard
 alias co='echo `fc -e -` | clip.exe'
-alias colors='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done'
+# alias colors='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done'
 
+# ripgrep hidden files to FZF
 alias rgh='rg --files --hidden | fzf'
+# go to root of git project
+# alias cdroot='cd $(git root)'
+
+
 # fshow - git commit browser
 # sc() {
 #   git log --graph --color=always \
@@ -184,3 +189,4 @@ gls() {
                 --bind "alt-v:execute:$_viewGitLogLineUnfancy | nvim -" \
                 --bind "alt-y:execute:$_gitLogLineToHash | xclip"
 }
+echo zshrc loaded
