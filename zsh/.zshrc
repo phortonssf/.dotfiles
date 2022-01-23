@@ -21,8 +21,8 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.npm-global/bin/:$PATH
 export HISTORY_IGNORE="(ls|cat|AWS|SECRET|cd|less|zsh|history)"
+# sets the variable for what backend to use in aws-vault
 export AWS_VAULT_BACKEND="pass"
-
 export NVM_DIR="$HOME/.nvm"
 
 # Remove mode switching delay.
@@ -151,5 +151,13 @@ export LS_COLORS='rs=0:no=00:mi=00:mh=00:ln=01;36:or=01;31:di=01;34:ow=04;01;34:
 alias luamake=/home/digitaldive/lua-language-server/3rd/luamake/luamake
 # include ~/.config/power10k_themes/.zsh-theme-gruvbox-material-dark
 
-# FZF COLORS from https://minsw.github.io/fzf-color-picker/
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#d0d0d0,bg:#121212,hl:#5f87af --color=fg+:#d0d0d0,bg+:#262626,hl+:#5fd7ff --color=info:#afaf87,prompt:#d7005f,pointer:#af5fff --color=marker:#87ff00,spinner:#af5fff,header:#87afaf'
+# # FZF COLORS from https://minsw.github.io/fzf-color-picker/
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+ --color=fg:#d0d0d0,bg:#121212,hl:#5f87af
+ --color=fg+:#d0d0d0,bg+:#262626,hl+:#5fd7ff
+ --color=info:#afaf87,prompt:#d7005f,pointer:#af5fff
+ --color=marker:#87ff00,spinner:#af5fff,header:#87afaf'
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
