@@ -29,6 +29,7 @@ plugins=(
   zsh-completions
   zsh-autosuggestions
   you-should-use
+  colored-man-pages
   )
 
  autoload -U compinit && compinit 
