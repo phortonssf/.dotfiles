@@ -1,6 +1,9 @@
 source ~/.local/bin/tmux-startup main
 export BROWSER=none
 export PATH=$PATH:~/bin
+export PATH=$PATH:~/.local/bin
+# set aws cli default pager
+export AWS_PAGER="nvim"
 # dont require cd to change dir
 export PATH=/usr/local/bin/:$PATH
 export PATH=~/usr/bin:/bin:/usr/sbin:/sbin:$PATH
