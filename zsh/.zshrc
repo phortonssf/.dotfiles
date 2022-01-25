@@ -14,8 +14,12 @@ export VIMSESSION=-S
 export PATH=/home/phortonssf/.local/bin:$PATH
 export PATH=$PATH:/mnt/c/Windows/System32
 export WINPATH=/mnt/c/Users/Pedro
-export FZF_DEFAULT_OPTS='--height 100% --layout=reverse --border'
+export FZF_DEFAULT_OPTS=' --height 100% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND='rg --type f --hidden --follow --exclude .git'
+# show dir preview tree
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+# https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings
+
 # Path to your oh-my-zsh installation
 export ZSH="/home/digitaldive/.oh-my-zsh"
 
@@ -166,4 +170,27 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+case ${TERM} in
 
+    screen*)
+
+        # user command to change default pane title on demand
+        function title { TMUX_PANE_TITLE="$*"; }
+
+        # function that performs the title update (invoked as PROMPT_COMMAND)
+        function update_title { printf "\033]2;%s\033\\" "${1:-$TMUX_PANE_TITLE}"; }
+
+        # default pane title is the name of the current process (i.e. 'bash')
+        TMUX_PANE_TITLE=$(ps -o comm $$ | tail -1)
+
+        # Reset title to the default before displaying the command prompt
+        PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'update_title'   
+
+        # Update title before executing a command: set it to the command
+        trap 'update_title "$BASH_COMMAND"' DEBUG
+
+        ;;
+
+        # ... other cases for different terminals ...
+
+esac
