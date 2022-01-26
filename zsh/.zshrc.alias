@@ -124,7 +124,7 @@ alias co='echo `fc -e -` | clip.exe'
 # ripgrep hidden files to FZF
 alias rgh='rg --files --hidden | fzf'
 # go to root of git project
-# alias cdroot='cd $(git root)'
+ alias gcd='cd $(git rev-parse --show-cdup)'
 
 
 # fshow - git commit browser
