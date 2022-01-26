@@ -43,9 +43,10 @@ set scrolloff=8
 set ttimeoutlen=50
 
 " first, enable status line always
-set laststatus=2
+set statusline+=%*
+"set laststatus=2
 set background=dark
-
+" disable syntastic on the statusline
 " Format on paste
 set pastetoggle=<F2>
 set noshowmode
