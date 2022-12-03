@@ -1,5 +1,5 @@
-Syntax on
-filetype plugin on
+" Syntax on
+" filetype plugin on
 
 
 source ~/.sets.vim
@@ -17,13 +17,13 @@ if &term =~ '^xterm'
 	" 6 -> solid vertical bar
 
 	" normal mode
-	let &t_EI .= "\e[1 q" 	
+	let &t_EI .= "\e[1 q"
 	" insert mode
-   let &t_EI .= "\e[1 q" 
+   let &t_EI .= "\e[1 q"
 	augroup windows_term
 		autocmd!
-		autocmd VimEnter * silent !echo -ne "\e[1 q" 
-		autocmd VimLeave * silent !echo -ne "\e[5 q" 
+		autocmd VimEnter * silent !echo -ne "\e[1 q"
+		autocmd VimLeave * silent !echo -ne "\e[5 q"
 	augroup END
 endif
 

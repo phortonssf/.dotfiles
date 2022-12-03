@@ -43,7 +43,7 @@ export KEYTIMEOUT=18
   fi
 
 ##Load nvim as editor otherwise vim
-if [[ -f /usr/local/bin/nvim ]]
+if [[ -f  /home/linuxbrew/.linuxbrew/bin/nvim ]]
   then EDITOR=nvim
   else EDITOR=vim
 fi
@@ -74,7 +74,7 @@ bindkey -ar ":"
 
 include ~/.zsh-plugins.zsh
 include ~/.zshrc.alias
-include ~/.zshrc.sets 
+include ~/.zshrc.sets
 include ~/.inputrc
 include ~/.cursor.zsh
 # Keeps errors out of zsh history
@@ -116,7 +116,7 @@ function mvp ()
 function _paste {
     # echo "Executing: $BUFFER"
    # local paste = eval powershell.exe -command "Get-Clipboard" </dev/null
-   local cmd="powershell.exe Get-Clipboard 2> /dev/null" 
+   local cmd="powershell.exe Get-Clipboard 2> /dev/null"
    local paste="$(eval $cmd )"
    # echo $paste
     printf '%s' $pate
@@ -131,7 +131,7 @@ function _paste {
 # vi-append-x-selection () { RBUFFER=$( powershell.exe -command "Get-Clipboard" </dev/null)}
 # zle -N vi-append-x-selection
 # bindkey -a '^X' vi-append-x-selection
- # bindkey -a '^X' _paste 
+ # bindkey -a '^X' _paste
 
 # zvm_vi_yank () {
 # 	zvm_yank
@@ -184,7 +184,7 @@ case ${TERM} in
         TMUX_PANE_TITLE=$(ps -o comm $$ | tail -1)
 
         # Reset title to the default before displaying the command prompt
-        PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'update_title'   
+        PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'update_title'
 
         # Update title before executing a command: set it to the command
         trap 'update_title "$BASH_COMMAND"' DEBUG

@@ -28,9 +28,9 @@ alias -- -="cd -"
 #Dot file bare git repo alias
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-alias winstartup="$EDITOR /mnt/c/Users/Pedro/AppData/Roaming/Microsoft/Windows/Start\ Menu/Programs/Startup" 
-alias zshrc="cd ~/.dotfiles/zsh && $EDITOR -S"
-alias zalias="$EDITOR ~/.dotfiles/zsh/.zshrc.alias" 
+alias winstartup="$EDITOR /mnt/c/Users/Pedro/AppData/Roaming/Microsoft/Windows/Start\ Menu/Programs/Startup"
+alias zshrc="cd ~/.dotfiles/zsh && $EDITOR "
+alias zalias="$EDITOR ~/.dotfiles/zsh/.zshrc.alias"
 alias zshralias="nvim ~/.dotfiles/zsh/.zshrc.alias"
 alias zshplugins="$EDITOR ~/.dotfiles/zsh/.zsh-plugins.zsh"
 alias vimkeys="$EDITOR ~/.dotfiles/nvim/.config/nvim/plugin/keymaps.vim"
@@ -164,7 +164,7 @@ git-fshow() {
 	)
 	$g | $fzf
 }
-gitshow () 
+gitshow ()
 {
   git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"  | \
    fzf --ansi --no-sort --reverse --tiebreak=index --preview \
@@ -189,4 +189,3 @@ gls() {
                 --bind "alt-v:execute:$_viewGitLogLineUnfancy | nvim -" \
                 --bind "alt-y:execute:$_gitLogLineToHash | xclip"
 }
-echo zshrc loaded
