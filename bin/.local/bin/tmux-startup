@@ -1,7 +1,21 @@
 #!/usr/bin/env bash
-echo starting tmux
-if ! tmux has-session -s main 2> /dev/null; then
-    tmux new-session -A -s main 
-else
-    tmux switch-client -t main 
+# tmux has-session -t=$session_name 2> /dev/null
+# SESSIONEXISTS=$(tmux list-sessions | grep $SESSION)
+# check if tmux is running
+if [ -z "$TMUX" ]; then
+  SESSIONEXISTS=$(tmux list-sessions)
+  # 2. Create the session if it doesn't exists.
+  if [ -z $SESSIONEXISTS ]; then
+    selected=$(find  ~/projects ~/ ~/work   -mindepth 1 -maxdepth 1 -type d | fzf-tmux)
+    if [ -z $selected ]; then
+      selected_name="main"
+      tmux display-message "starting main session"
+    else
+      selected_name=$(basename "$selected" | tr . _)
+    fi
+     TMUX= tmux new-session -As $selected_name -c $selected
+  else
+    LAST_TMUX_SESSION=$(tmux list-sessions | awk -F ":" '{print$1}' | tail -n1);
+    tmux attach -t $LAST_TMUX_SESSION
+  fi
 fi
