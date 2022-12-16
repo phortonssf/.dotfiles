@@ -1,5 +1,5 @@
 source ~/.local/bin/tmux-startup main
-export BROWSER=none
+export BROWSER="chrome.exe"
 export PATH=$PATH:~/bin
 export PATH=$PATH:~/.local/bin
 # set aws cli default pager
@@ -75,7 +75,6 @@ bindkey -ar ":"
 include ~/.zsh-plugins.zsh
 include ~/.zshrc.alias
 include ~/.zshrc.sets
-include ~/.inputrc
 include ~/.cursor.zsh
 # Keeps errors out of zsh history
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
@@ -145,14 +144,27 @@ function _paste {
 # ZVM_VI_INSERT_ESCAPE_BINDKEY='^['
 # ZVM_VI_INSERT_ESCAPE_BINDKEY='kk^
 
-# For completions to work, the above line must be added after compinit is called.
 #   You may have to rebuild your cache by running rm ~/.zcompdump*; compinit    .
-eval "$(zoxide init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 
 #### TODO add more escape keys
+function zvm_config() {
+  ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+  ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
+  ZVM_VI_INSERT_ESCAPE_BINDKEY=kk
+  ZVM_ESCAPE_KEYTIMEOUT=0.5
+}
 # The plugin will auto execute this zvm_after_init function
 function zvm_after_init() {
-   zvm_bindkey viins 'jj' zvm_exit_insert_mode
+
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  include ~/.inputrc
+  # ZVM_VI_INSERT_ESCAPE_BINDKEY=kk
+  # ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
+  ZVM_KEYTIMEOUT=0.3
+  ZVM_ESCAPE_KEYTIMEOUT=0.3
+  zvm_bindkey viins 'jj' zvm_exit_insert_mode
+  zvm_bindkey viins 'kk' zvm_exit_insert_mode
    source ~/.p10k.zsh
 }
 # zvm_after_init_commands+=("bindkey -M viins 'jj' vi-cmd-mode")
@@ -194,3 +206,25 @@ case ${TERM} in
         # ... other cases for different terminals ...
 
 esac
+export VI_MODE_SET_CURSOR=true
+# vi mode copy paste
+vi-append-x-selection () { RBUFFER=$(xsel -o -p </dev/null)$RBUFFER; }
+zle -N vi-append-x-selection
+bindkey -a '^X' vi-append-x-selection
+vi-yank-x-selection () { print -rn -- $CUTBUFFER | xsel -i -p; }
+zle -N vi-yank-x-selection
+bindkey -a '^Y' vi-yank-x-selection
+# zstyle :zle:evil-registers:'[A-Za-z%#]' editor nvim
+# (){
+# 	local op
+# 	local -a handler
+# 	for op in yank put; do
+# 		# get the current behavior for '+'
+# 		zstyle -a :zle:evil-registers:'+' $op handler
+# 		# if there is a handler, assign it for the empty pattern
+# 		(($#handler)) && zstyle :zle:evil-registers:'' $op $handler
+# 	done
+# }
+#
+bindkey -M viins 'kk' vi-cmd-mode
+bindkey -M viins 'jj' vi-cmd-mode
