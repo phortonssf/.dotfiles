@@ -1,61 +1,77 @@
-#!/bin/sh
-if [ $# -eq 1 ]; then
+#!/usr/bin/env bash
+current_session=`tmux display-message -p '#S'`
+# export STARTED=false
+if [[ $# -eq 1 ]]; then
     selected=$1
     selected_name=$(basename "$selected" | tr . _)
 fi
-if [ -z $selected ] || [ "$TMUX_SESSION" = "$selected_name" ]; then
-    tmux new-session -s main
-    tmux attach-session -t main -c /home/digitaldive
-    exit 0
+
+# if already in session trying to switch too
+if [[ $current_session = $selected_name ]]; then
+     tmux display-message "Already in ${selected_name}"
+     return
 fi
+
+# if no selection passed start a main session
+if [[ -z $selected ]]; then
+    selected_name='main'
+fi
+
 tmux_running=$(pgrep tmux)
-
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected_name -c $selected
-    tmux send-keys -t $selected_name "nvim -S" Enter
-    tmux neww -t $selected_name:2 -n zsh -c $selected -n zsh 
-    tmux attach-session -t $selected_name:1
-    exit 0
+if ! tmux has-session -t=$selected_name 2> /dev/null; then
+  TMUX= tmux new-session -s $selected_name -c $selected -d
+  tmux send-keys -t $selected_name "nvim " Enter
+  tmux neww -t $selected_name:2 -c $selected -n zsh
 fi
 
-if ! tmux has-session -t $selected_name 2> /dev/null; then
-   tmux new-session -ds $selected_name -c $selected -n $selected_name
-   tmux send-keys -t $selected_name "nvim -S" Enter
-   tmux neww -t $selected_name:2 -c $selected -n zsh 
-fi
-
-tmux switch-client -t $selected_name
-# new_tmux_session () {
-#     tmux new-session -s $selected_name -c $selected -n $selected_name  -d
-#     tmux neww -t $selected_name:2 -n zsh -c $selected -n zsh 
-# }
-# set_tmux_env () {
-#     tmux set-environment -g TMUX_SESSION ${selected_name} 
-# }
-
+# if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+  # tmux new-session -s $selected_name -c $selected
+  # exit 0
+# fi
+tmux switch-client -t $selected_name:1
+# if [ $# -eq 1 ]; then
+#     selected=$1
+#     selected_name=$(basename "$selected" | tr . _)
+# fi
+# if [ -z $selected ] || [ "$TMUX_SESSION" = "$selected_name" ]; then
+#     tmux new-session -s main
+#     tmux attach-session -t main -c ~
+#     exit 0
+# fi
+# tmux_running=$(pgrep tmux)
+# # New session
 
 # if ! tmux has-session -t $selected_name 2> /dev/null; then
-#     new_tmux_session
-#     set_tmux_env
+#   tmux new-session -ds $selected_name -c $selected -n $selected_name
+#   tmux send-keys -t $selected_name "nvim -S" Enter
+#   tmux neww -t $selected_name:2 -c $selected -n zsh
+#   tmux switch-client -t $selected_name
+#   exit 0
 # fi
 
-# if [ -z $TMUX_PREV_SESSION  ]; then
-#     tmux set-environement -g TMUX_PREV_SESSION $TMUX_SESSION
-# fi
-# if [[ -z $TMUX ]]; then
-    
-#   tmux set-environment -g TMUX_PREV_SESSION $TMUX_SESSION 
-#    set_tmux_env
-#    tmux attach-session -t $selected_name:1
-#    tmux send-keys -t $selected_name "nvim" Enter
-#    exit 0
-      
+# ---------------------------------------
+#https://gist.github.com/jyurek/7be666a88e06f68d45cf
+##!/bin/zsh
+#WORKING_DIRECTORY=$(cdpath=(. ~/code) cd $1 > /dev/null 2>&1 && pwd)
+#if [ -z "$TMUX" ]; then
+#  # not in tmux
+#  if [ -n "$WORKING_DIRECTORY" ]; then
+#    tmux new-session -As $1 -c $WORKING_DIRECTORY
+#  else
+#    tmux new-session -As $1 -c $HOME
+#  fi
+#else
+#  # inside tmux
+#  if tmux has-session -t $1 2> /dev/null; then
+#    tmux switch-client -t $1
+#  else
+#    if [ -n "$WORKING_DIRECTORY" ]; then
+#      TMUX= tmux new-session -ds $1 -c $WORKING_DIRECTORY
+#    else
+#      TMUX= tmux new-session -ds $1
+#    fi
+#    tmux switch-client -t $1
+#  fi
+#fi
 
-# else
-    
-#   tmux set-environment -g TMUX_PREV_SESSION $TMUX_SESSION
-#   set_tmux_env
-#   tmux switch-client -t $selected_name:1
-#   tmux send-keys -t $selected_name "nvim" Enter
-
-# fi
+# ------------------------------------------------------------
