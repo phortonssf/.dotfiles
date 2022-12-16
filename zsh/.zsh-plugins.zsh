@@ -17,11 +17,11 @@ export ZSH=$HOME/.oh-my-zsh
 plugins=(
   git
   dircycle
-# colorize
+  colorize
   ssh-agent
   zsh-vi-mode
   zsh-syntax-highlighting
-  zsh-vim-mode
+  # zsh-vim-mode
   zsh-system-clipboard
   aws
   fzf
@@ -29,10 +29,11 @@ plugins=(
   zsh-completions
   zsh-autosuggestions
   you-should-use
+  evil-registers
   colored-man-pages
   )
 
- autoload -U compinit && compinit 
+ autoload -U compinit && compinit
  source $ZSH/oh-my-zsh.sh
  # sourc $HOME/.oh-my-sh/custom/plugins/evil-registers/evil-registers.zsh
  source $HOME/.oh-my-zsh/custom/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
@@ -43,7 +44,6 @@ if type rg &> /dev/null; then
      export FZF_DEFAULT_OPTS='-m --height 50% --border'
      export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
- [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # needed for completion
 export NVM_DIR="$HOME/.nvm"
@@ -51,11 +51,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # # completion rules
-# zstyle ':completion::*:ls::*' fzf-completion-opts --preview='eval head {1}'
+zstyle ':completion::*:ls::*' fzf-completion-opts --preview='eval head {1}'
 # zstyle ':completion:*' auto-description 'specify: %d'
 # zstyle ':completion:*' completer _expand _complete _correct _approximate
 # zstyle ':completion:*' format 'Completing %d'
-# zstyle ':completion:*' group-name ''
+zstyle ':completion:*' group-name ''
 # zstyle ':completion:*' menu select=2
 # zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # zstyle ':completion:*' list-colors ''
@@ -68,12 +68,13 @@ export NVM_DIR="$HOME/.nvm"
 # zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 # zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-# only aws command completion 
+# only aws command completion
 # zstyle ':completion:*:*:aws' fzf-search-display true
 # adds completions for cli apps
 complete -o nospace -C ~/bin/terraform terraform
 source <(kubectl completion zsh)
 complete -C aws_completer aws
 
+zstyle ':completion:*:*:gh:*' fzf-search-display true
 zstyle ':completion:*:*:git:*' fzf-search-display true
 # zstyle :zle:evil-registers:'[A-Za-z%#]' editor nvim
