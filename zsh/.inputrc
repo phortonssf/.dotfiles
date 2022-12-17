@@ -1,8 +1,6 @@
-
-# esc insert mode with jj or kk 
+# esc insert mode with jj or kk
 bindkey -M viins 'kk' vi-cmd-mode
 bindkey -M viins 'jj' vi-cmd-mode
-
 # ctrl-space accept next word in autosuggestion
 bindkey '^@' forward-word
 
@@ -16,7 +14,7 @@ bindkey -r '^J'
 
 # Vi Mode
 set editing-mode vi
- 
+
 # Fix backspace bug when switching modes
 bindkey "^?" backward-delete-char
 
@@ -60,4 +58,14 @@ bindkey -a '^e' edit-command-line
 
 # adds Y yank to end of line
 bindkey -a -s 'Y' 'y$'
-ZVM_VI_INSERT_ESCAPE_BINDKEY='kk'
+# ZVM_VI_INSERT_ESCAPE_BINDKEY='kk'
+
+autoload -Uz surround
+zle -N delete-surround surround
+zle -N change-surround surround
+zle -N add-surround surround
+
+bindkey -a cs change-surround
+bindkey -a ds delete-surround
+bindkey -a ys add-surround
+bindkey -M visual ys add-surround
