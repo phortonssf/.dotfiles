@@ -3,6 +3,7 @@
 	email = phorton@softstackfactory.com
 	name = Peter Horton
 [alias]
+  conflicted = '!nvim +Conflicted'
 	incoming = !git fetch && git log --oneline ..@{u}
 	outgoing = !git fetch && git log --oneline @{u}..
 	last = log -1 HEAD --stat
