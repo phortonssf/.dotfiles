@@ -18,7 +18,6 @@ plugins=(
   git
   dircycle
   colorize
-  ssh-agent
   zsh-vi-mode
   zsh-syntax-highlighting
   # zsh-vim-mode
