@@ -19,3 +19,4 @@ if [ -z "$TMUX" ]; then
     tmux attach -t $LAST_TMUX_SESSION
   fi
 fi
+

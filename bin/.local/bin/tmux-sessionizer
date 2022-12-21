@@ -1,10 +1,33 @@
 #!/usr/bin/env bash
+if [ -z "$TMUX" ]; then
+  SESSIONEXISTS=$(tmux list-sessions)
+  # 2. Create the session if it doesn't exists.
+  if [ -z $SESSIONEXISTS ]; then
+    selected=$(find  ~/projects ~/ ~/work   -mindepth 1 -maxdepth 1 -type d | fzf-tmux)
+    if [ -z $selected ]; then
+      selected_name="main"
+      tmux display-message "starting main session"
+      return
+    else
+      selected_name=$(basename "$selected" | tr . _)
+      return
+    fi
+     TMUX= tmux new-session -As $selected_name -c $selected
+     return
+  else
+    LAST_TMUX_SESSION=$(tmux list-sessions | awk -F ":" '{print$1}' | tail -n1);
+    tmux attach -t $LAST_TMUX_SESSION
+    return
+  fi
+fi
 current_session=`tmux display-message -p '#S'`
 # export STARTED=false
 if [[ $# -eq 1 ]]; then
     selected=$1
-    selected_name=$(basename "$selected" | tr . _)
+  else
+    selected=$(find  ~/projects ~/ ~/work   -mindepth 1 -maxdepth 1 -type d | fzf-tmux)
 fi
+
 
 # if already in session trying to switch too
 if [[ $current_session = $selected_name ]]; then
@@ -17,6 +40,7 @@ if [[ -z $selected ]]; then
     selected_name='main'
 fi
 
+selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 if ! tmux has-session -t=$selected_name 2> /dev/null; then
   TMUX= tmux new-session -s $selected_name -c $selected -d
@@ -28,7 +52,27 @@ fi
   # tmux new-session -s $selected_name -c $selected
   # exit 0
 # fi
+if [ -z "$TMUX" ]; then
+  SESSIONEXISTS=$(tmux list-sessions)
+  # 2. Create the session if it doesn't exists.
+  if [ -z $SESSIONEXISTS ]; then
+    selected=$(find  ~/projects ~/ ~/work   -mindepth 1 -maxdepth 1 -type d | fzf-tmux)
+    if [ -z $selected ]; then
+      selected_name="main"
+      tmux display-message "starting main session"
+    else
+      selected_name=$(basename "$selected" | tr . _)
+    fi
+     TMUX= tmux new-session -As $selected_name -c $selected
+  else
+    LAST_TMUX_SESSION=$(tmux list-sessions | awk -F ":" '{print$1}' | tail -n1);
+    tmux attach -t $LAST_TMUX_SESSION
+  fi
+fi
+
 tmux switch-client -t $selected_name:1
+
+
 # if [ $# -eq 1 ]; then
 #     selected=$1
 #     selected_name=$(basename "$selected" | tr . _)
