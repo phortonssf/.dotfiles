@@ -69,3 +69,7 @@ bindkey -a cs change-surround
 bindkey -a ds delete-surround
 bindkey -a ys add-surround
 bindkey -M visual ys add-surround
+
+bindkey -M vicmd '^[' undefined-key
+bindkey -rM viins '^X'
+bindkey -M visual i <Esc>

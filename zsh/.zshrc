@@ -33,7 +33,7 @@ export AWS_VAULT_BACKEND="pass"
 export NVM_DIR="$HOME/.nvm"
 
 # Remove mode switching delay.
-export KEYTIMEOUT=18
+export KEYTIMEOUT=1
 
 ## Preferred editor for local and remote sessions
   if [[ -n $SSH_CONNECTION ]]; then
