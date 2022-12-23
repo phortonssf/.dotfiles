@@ -141,8 +141,6 @@ function _paste {
 # zle  -N zvm_vi_yank
 # bindkey -a '^x' zvm_vi_yank
 
-# ZVM_VI_INSERT_ESCAPE_BINDKEY='^['
-# ZVM_VI_INSERT_ESCAPE_BINDKEY='kk^
 
 #   You may have to rebuild your cache by running rm ~/.zcompdump*; compinit    .
 eval "$(zoxide init --cmd cd zsh)"
@@ -150,9 +148,11 @@ eval "$(zoxide init --cmd cd zsh)"
 #### TODO add more escape keys
 function zvm_config() {
   ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
-  ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
-  ZVM_VI_INSERT_ESCAPE_BINDKEY=kk
-  ZVM_ESCAPE_KEYTIMEOUT=0.5
+  # ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
+  # ZVM_VI_INSERT_ESCAPE_BINDKEY=kk
+  # ZVM_EXIT_VISUAL_MODE=v
+ # ZVM_VI_VISUAL_ESCAPE_BINDKEY=jj
+  ZVM_ESCAPE_KEYTIMEOUT=0.3
 }
 # The plugin will auto execute this zvm_after_init function
 function zvm_after_init() {
@@ -164,6 +164,9 @@ function zvm_after_init() {
   ZVM_KEYTIMEOUT=0.3
   ZVM_ESCAPE_KEYTIMEOUT=0.3
   zvm_bindkey viins 'jj' zvm_exit_insert_mode
+  zvm_bindkey visual 'jj' zvm_exit_visual_mode
+  zvm_bindkey visual 'i' zvm_exit_visual_mode
+  # zvm_bindkey visual '^c' zvm_exit_visual_mode
   zvm_bindkey viins 'kk' zvm_exit_insert_mode
    source ~/.p10k.zsh
 }
@@ -226,5 +229,3 @@ bindkey -a '^Y' vi-yank-x-selection
 # 	done
 # }
 #
-bindkey -M viins 'kk' vi-cmd-mode
-bindkey -M viins 'jj' vi-cmd-mode
