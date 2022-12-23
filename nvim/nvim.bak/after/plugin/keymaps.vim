@@ -6,11 +6,11 @@
 "xnoremap <C-_> :Commentary <CR>
 
 ""Alt move line "
-"noremap <A-j> :m .+2<CR>==
-"noremap <A-k> :m .-2<CR>==
 "vnoremap <A-j> :m '>+1<CR>gv=gv
 "vnoremap <A-k> :m '<-2<CR>gv=gv
 
+"noremap <A-j> :m .+2<CR>==
+"noremap <A-k> :m .-2<CR>==
 ""Bufferline go to buffer"
 "nnoremap <silent><leader>1 <Cmd>BufferLineGoToBuffer 1<CR>
 "nnoremap <silent><leader>2 <Cmd>BufferLineGoToBuffer 2<CR>
