@@ -65,6 +65,7 @@ include () {
 }
 # REMOVES EXECUTE
 bindkey -ar ":"
+# bindkey -ar "<C-j>"
 
 
  autoload -Uz promptinit

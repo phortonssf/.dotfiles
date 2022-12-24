@@ -39,14 +39,13 @@ zle -N prevDir
 bindkey '^^' prevDir
 
 cheat_sheet(){
-  tmux-ch.sh
-  zle accept-line
+  ~/.local/bin/tmux-cht.sh;
 }
 zle -N cheat_sheet
 
 # ctrl + / opens cheatsheet
-bindkey -a '^_' cheat_sheet
-bindkey  '^_' cheat_sheet
+# bindkey -a '^_' cheat_sheet
+bindkey -s '^_' '~/.local/bin/tmux-cht.sh^M'
 
 # ctr-e open command in vim
 bindkey '^e' edit-command-line
@@ -68,5 +67,11 @@ bindkey -a ys add-surround
 bindkey -M visual ys add-surround
 
 bindkey -M vicmd '^[' undefined-key
+
+# REMOVES KEYS
 bindkey -rM viins '^X'
+# bindkey -r viins '^j'
 # bindkey -M visual '^c' deactivate-region
+# bind home and end key  WIP
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
