@@ -1,8 +1,9 @@
 -- Gives code blocks
+vim.opt.shell = "/bin/bash"
 vim.g.markdown_fenced_languages = {"html", "javascript", "typescript", "css", "scss", "lua", "vim"}
 vim.opt.nu = true
 vim.opt.relativenumber = true
-
+-- set shell=/bin/bash
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
