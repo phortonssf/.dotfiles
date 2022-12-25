@@ -30,6 +30,7 @@ plugins=(
   you-should-use
   evil-registers
   colored-man-pages
+  magic-enter
   )
 
  autoload -U compinit && compinit

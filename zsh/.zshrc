@@ -1,26 +1,10 @@
 source ~/.local/bin/tmux-startup main
-export BROWSER="chrome.exe"
-export PATH=$PATH:~/bin
-export PATH=$PATH:~/.local/bin
-# set aws cli default pager
-export AWS_PAGER="nvim"
-# dont require cd to change dir
-export PATH=/usr/local/bin/:$PATH
-export PATH=~/usr/bin:/bin:/usr/sbin:/sbin:$PATH
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/.local/bin/lvim:$PATH
-export VIMSESSION=-S
-# ZSH_DISABLE_COMPFIX=true:
-export PATH=/home/phortonssf/.local/bin:$PATH
-export PATH=$PATH:/mnt/c/Windows/System32
-export WINPATH=/mnt/c/Users/Pedro
-export FZF_DEFAULT_OPTS=' --height 100% --layout=reverse --border'
-export FZF_DEFAULT_COMMAND='rg --type f --hidden --follow --exclude .git'
-# show dir preview tree
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
-# https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings
-
-# Path to your oh-my-zsh installation
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS export PATH=$PATH:~/bin export PATH=$PATH:~/.local/bin # set aws cli default pager export AWS_PAGER="nvim" dont require cd to change dir export PATH=/usr/local/bin/:$PATH export PATH=~/usr/bin:/bin:/usr/sbin:/sbin:$PATH export PATH=$HOME/bin:/usr/local/bin:$PATH export PATH=$HOME/.local/bin/lvim:$PATH export VIMSESSION=-S ZSH_DISABLE_COMPFIX=true: export PATH=/home/phortonssf/.local/bin:$PATH export PATH=$PATH:/mnt/c/Windows/System32 export WINPATH=/mnt/c/Users/Pedro export FZF_DEFAULT_OPTS=' --height 100% --layout=reverse --border' export FZF_DEFAULT_COMMAND='rg --type f --hidden --follow --exclude .git' show dir preview tree export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'" https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings Path to your oh-my-zsh installation
 export ZSH="/home/digitaldive/.oh-my-zsh"
 
 # If you come from bash you might have to change your $PATH.
@@ -77,12 +61,14 @@ include ~/.zsh-plugins.zsh
 include ~/.zshrc.alias
 include ~/.zshrc.sets
 include ~/.cursor.zsh
+include ~/.local/bin/functions.sh
 # Keeps errors out of zsh history
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
 
 eval "$(dircolors -b)"
 
 
+alias c='"$(history | tail -2 | sed "s/  [0-9]*  //;2d")" > /tmp/cmdoutput && cat /tmp/cmdoutput | xsel -b && notify-send "Terminal" "Ouput Copied"'
 # Change cursor shape for different vi modes.
 
 #MODE_CURSOR_REPLACE="$MODE_CURSOR_VIINS #ff0000"
@@ -144,7 +130,7 @@ function _paste {
 
 
 #   You may have to rebuild your cache by running rm ~/.zcompdump*; compinit    .
-eval "$(zoxide init --cmd cd zsh)"
+eval "$(zoxide init --cmd  cd zsh)"
 
 #### TODO add more escape keys
 function zvm_config() {
@@ -211,6 +197,7 @@ case ${TERM} in
 
 esac
 export VI_MODE_SET_CURSOR=true
+export VI_MODE_SET_CURSOR=true
 # vi mode copy paste
 vi-append-x-selection () { RBUFFER=$(xsel -o -p </dev/null)$RBUFFER; }
 zle -N vi-append-x-selection
@@ -218,6 +205,12 @@ bindkey -a '^X' vi-append-x-selection
 vi-yank-x-selection () { print -rn -- $CUTBUFFER | xsel -i -p; }
 zle -N vi-yank-x-selection
 bindkey -a '^Y' vi-yank-x-selection
+
+function magic-enter-cmd {
+    echo "dirs -v "
+}
+
+
 # zstyle :zle:evil-registers:'[A-Za-z%#]' editor nvim
 # (){
 # 	local op
@@ -230,3 +223,4 @@ bindkey -a '^Y' vi-yank-x-selection
 # 	done
 # }
 #
+export
