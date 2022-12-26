@@ -2,7 +2,7 @@ let g:is_win = (has('win32') || has('win64')) ? v:true : v:false
 let g:is_linux = (has('unix') && !has('macunix')) ? v:true : v:false
 let g:is_mac = has('macunix') ? v:true : v:false
 let g:logging_level = 'info'
-  
+set shell=/bin/bash
 "{{ Disable loading certain plugins
 " Whether to load netrw by default, see
 " https://github.com/bling/dotvim/issues/4

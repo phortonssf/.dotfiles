@@ -1,4 +1,4 @@
-:set shell=/bin/zsh
+set shell=/bin/zsh
 set clipboard+=unnamedplus
 set sessionoptions+=globals
 set splitright
