@@ -30,6 +30,7 @@ if status is-interactive
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
        bass ~/.local/bin/tmux-startup
    #fish_vi_key_bindings
+   set -U fish_escape_delay_ms 100
    alias m='mark'
    alias g='jump'
    alias gs='git status'
@@ -39,13 +40,12 @@ if status is-interactive
    bind -M insert \cj accept-autosuggestion execute
    bind -k -M insert nul nextd-or-forward-word
    bind \cg 'commandline -i " "'
-
    #bind -M insert \c@ nextd-or-forward-word
 
-#set pure_symbol_prompt ' '
- #set pure_symbol_reverse_prompt ' '
-  set pure_symbol_prompt ' '
-  set pure_symbol_reverse_prompt ' '
+set pure_symbol_prompt ' '
+ set pure_symbol_reverse_prompt ' '
+  # set pure_symbol_prompt ' '
+  # set pure_symbol_reverse_prompt ' '
 
   function rr
     set PREV_CMD (history | head -1)
@@ -59,7 +59,9 @@ if status is-interactive
   set fzf_fd_opts --hidden --exclude=.git
   set fzf_fd_opts --hidden --exclude=.git
   fzf_configure_bindings --directory=\cf --variables=\ce --git_log=\ch --git_status=\cg
-  
+
+  jump shell fish | source
+
   function sudo
     if test "$argv" = !!
         eval command sudo $history[1]
@@ -67,6 +69,6 @@ if status is-interactive
         command sudo $argv
     end
 end
-  
+
 end
 
