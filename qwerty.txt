@@ -19,7 +19,7 @@
 {rshift}{2}>{2}
 {rshift}{3}>{3}
 {rshift}{4}>{4}
-{rshift}{5}>{5} 
+{rshift}{5}>{5}
 {rshift}{6}>{6}
 {rshift}{7}>{7}
 {rshift}{8}>{8}
@@ -37,4 +37,4 @@
 {lshift}{0}>{0}
 [delete]>[tab][t&h100][meh]
 [tab]>[escape]
-
+{lctrl}{;}>{-rshift}{F1}{+rshift}
