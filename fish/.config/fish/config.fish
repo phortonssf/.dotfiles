@@ -39,6 +39,7 @@ if status is-interactive
    bind \cJ accept-autosuggestion
    bind -M insert \cj accept-autosuggestion execute
    bind -k -M insert nul nextd-or-forward-word
+   #bind -e \[1;2P
    bind \cg 'commandline -i " "'
    #bind -M insert \c@ nextd-or-forward-word
 
