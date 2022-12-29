@@ -179,7 +179,6 @@
 "nnoremap <Leader>xa :call CloseAllBuffersButCurrent()<CR>
 
 "" testch and replace word under cursor
-" " nnoremap <expr> <R> ':%s/\<'.expand('<cword>').'\>/<&>/g<CR>'
 " nnoremap R :%sm/\<<C-r><C-w>\>//gc<Left><Left><Left>
 "" project search and replace
 "nnoremap <leader>vqsr :cdo %s/<search term>/<replace term>/gc<Left><Left><Left><Left><Left><Left>
