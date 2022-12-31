@@ -43,7 +43,7 @@ if status is-interactive
    bind \cg 'commandline -i " "'
    #bind -M insert \c@ nextd-or-forward-word
 
-set pure_symbol_prompt ' '
+ set pure_symbol_prompt ' '
  set pure_symbol_reverse_prompt ' '
   # set pure_symbol_prompt ' '
   # set pure_symbol_reverse_prompt ' '
@@ -61,7 +61,11 @@ set pure_symbol_prompt ' '
   set fzf_fd_opts --hidden --exclude=.git
   fzf_configure_bindings --directory=\cf --variables=\ce --git_log=\ch --git_status=\cg
 
-  jump shell fish | source
+    #installed mars
+    #https://github.com/techwizrd/fishmarks
+
+    zoxide init fish | source
+    #  jump shell fish | source */
 
   function sudo
     if test "$argv" = !!
@@ -73,3 +77,6 @@ end
 
 end
 
+
+# Load fishmarks (http://github.com/techwizrd/fishmarks)
+. $HOME/.fishmarks/marks.fish
