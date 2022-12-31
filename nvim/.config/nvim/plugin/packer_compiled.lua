@@ -90,10 +90,25 @@ _G.packer_plugins = {
     path = "/home/digitaldive/.local/share/nvim/site/pack/packer/start/catppuccin",
     url = "https://github.com/catppuccin/nvim"
   },
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/home/digitaldive/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    url = "https://github.com/hrsh7th/cmp-buffer"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/digitaldive/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["cmp-nvim-lua"] = {
+    loaded = true,
+    path = "/home/digitaldive/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+    url = "https://github.com/hrsh7th/cmp-nvim-lua"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/home/digitaldive/.local/share/nvim/site/pack/packer/start/cmp-path",
+    url = "https://github.com/hrsh7th/cmp-path"
   },
   cmp_luasnip = {
     loaded = true,
@@ -120,15 +135,10 @@ _G.packer_plugins = {
     path = "/home/digitaldive/.local/share/nvim/site/pack/packer/start/everforest",
     url = "https://github.com/sainnhe/everforest"
   },
-  ["fidget.nvim"] = {
+  ["friendly-snippets"] = {
     loaded = true,
-    path = "/home/digitaldive/.local/share/nvim/site/pack/packer/start/fidget.nvim",
-    url = "https://github.com/j-hui/fidget.nvim"
-  },
-  ["gitsigns.nvim"] = {
-    loaded = true,
-    path = "/home/digitaldive/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
-    url = "https://github.com/lewis6991/gitsigns.nvim"
+    path = "/home/digitaldive/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+    url = "https://github.com/rafamadriz/friendly-snippets"
   },
   ["grapple.nvim"] = {
     loaded = true,
@@ -150,6 +160,11 @@ _G.packer_plugins = {
     path = "/home/digitaldive/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
+  ["lsp-zero.nvim"] = {
+    loaded = true,
+    path = "/home/digitaldive/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
+    url = "https://github.com/VonHeikemen/lsp-zero.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/digitaldive/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -169,11 +184,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/digitaldive/.local/share/nvim/site/pack/packer/start/melange",
     url = "https://github.com/savq/melange"
-  },
-  ["neodev.nvim"] = {
-    loaded = true,
-    path = "/home/digitaldive/.local/share/nvim/site/pack/packer/start/neodev.nvim",
-    url = "https://github.com/folke/neodev.nvim"
   },
   ["neovim-ayu"] = {
     loaded = true,
@@ -221,11 +231,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/digitaldive/.local/share/nvim/site/pack/packer/start/onedark.nvim",
     url = "https://github.com/navarasu/onedark.nvim"
-  },
-  ["packer.nvim"] = {
-    loaded = true,
-    path = "/home/digitaldive/.local/share/nvim/site/pack/packer/start/packer.nvim",
-    url = "https://github.com/wbthomason/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
@@ -279,16 +284,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/digitaldive/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
-  },
-  ["vim-fugitive"] = {
-    loaded = true,
-    path = "/home/digitaldive/.local/share/nvim/site/pack/packer/start/vim-fugitive",
-    url = "https://github.com/tpope/vim-fugitive"
-  },
-  ["vim-rhubarb"] = {
-    loaded = true,
-    path = "/home/digitaldive/.local/share/nvim/site/pack/packer/start/vim-rhubarb",
-    url = "https://github.com/tpope/vim-rhubarb"
   },
   ["vim-sleuth"] = {
     loaded = true,
