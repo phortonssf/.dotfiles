@@ -35,6 +35,9 @@
 {lshift}{8}>{8}
 {lshift}{9}>{9}
 {lshift}{0}>{0}
+{lctrl}{o}>{cbrack}
+{lctrl}{i}>{obrack}
 [delete]>[tab][t&h100][meh]
 [tab]>[escape]
 {lctrl}{;}>{-rshift}{F1}{+rshift}
+
