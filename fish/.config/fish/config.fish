@@ -34,6 +34,9 @@ if status is-interactive
    alias m='mark'
    alias g='jump'
    alias gs='git status'
+
+   alias gitroot='cd $(git rev-parse --show-toplevel)'
+
    set -U fish_cursor_insert line
    set -U fish_cursor_replace_one underscore
    bind \cJ accept-autosuggestion
