@@ -1,6 +1,7 @@
 [=]>[\]
 [caps]>[kpshift]
 [kp-caps]>[kpshift]
+[kp-c]>[caps]
 [\]>[=]
 [rwin]>[ralt]
 [kp-rwin]>[kp-ralt]
@@ -40,4 +41,3 @@
 [delete]>[tab][t&h100][meh]
 [tab]>[escape]
 {lctrl}{;}>{-rshift}{F1}{+rshift}
-
