@@ -1,26 +1,26 @@
-setopt HIST_SAVE_NO_DUPS 
-export PATH=$PATH:~/bin 
-export PATH=$PATH:~/.local/bin # set aws cli default pager 
-export AWS_PAGER="nvim" dont require cd to change dir 
-export PATH=/usr/local/bin/:$PATH 
-export PATH=~/usr/bin:/bin:/usr/sbin:/sbin:$PATH 
-export PATH=$HOME/bin:/usr/local/bin:$PATH 
-export PATH=$HOME/.local/bin/lvim:$PATH 
-export VIMSESSION=-S ZSH_DISABLE_COMPFIX=true: 
-export PATH=/home/phortonssf/.local/bin:$PATH 
-export PATH=$PATH:/mnt/c/Windows/System32 
-export WINPATH=/mnt/c/Users/Pedro 
-export FZF_DEFAULT_OPTS='--height 100% --layout=reverse --border' 
-export FZF_DEFAULT_COMMAND='rg --type f --hidden --follow --exclude .git' 
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'" 
+# setopt HIST_SAVE_NO_DUPS
+export PATH=$PATH:~/bin
+export PATH=$PATH:~/.local/bin # set aws cli default pager
+export AWS_PAGER="nvim" dont require cd to change dir
+export PATH=/usr/local/bin/:$PATH
+export PATH=~/usr/bin:/bin:/usr/sbin:/sbin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin/lvim:$PATH
+export VIMSESSION=-S ZSH_DISABLE_COMPFIX=true:
+export PATH=/home/phortonssf/.local/bin:$PATH
+export PATH=$PATH:/mnt/c/Windows/System32
+export WINPATH=/mnt/c/Users/Pedro
+export FZF_DEFAULT_OPTS='--height 100% --layout=reverse --border'
+export FZF_DEFAULT_COMMAND='rg --type f --hidden --follow --exclude .git'
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.npm-global/bin/:$PATH
 export AWS_VAULT_BACKEND="pass"
 export NVM_DIR="$HOME/.nvm"
 export KEYTIMEOUT=1
-    export EDITOR='vim'
-    export EDITOR='nvim'
+export EDITOR='vim'
+export EDITOR='nvim'
 # export ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
 # export ZSH_SYSTEM_CLIPBOARD_SELECTION='CLIPBOARD'
 export MANPAGER='nvim +Man!'
