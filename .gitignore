@@ -10,4 +10,8 @@ tags.temp
 nvim/.config/nvim/plugin/packer_compiled.lua
 nvim/.config/nvim/plugin/packer_compiled.vim
 nvim/.config/nvim/lua/.luarc.json
+session*.vim
+nvim/.config/nvim/ses
 .mind/
+sessions*.vim
+

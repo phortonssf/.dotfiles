@@ -33,7 +33,7 @@ if status is-interactive
     set -U fish_escape_delay_ms 100
     alias m='mark'
     alias g='jump'
-    alias gs='git status'
+    alias gs="nvim  . -c 'G' -c 'call CloseAllBuffersButCurrent()'"
     alias ff='fd --type f --strip-cwd-prefix --hidden | fzf'
     alias gitroot='cd $(git rev-parse --show-toplevel)'
 
