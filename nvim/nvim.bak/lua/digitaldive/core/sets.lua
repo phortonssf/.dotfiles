@@ -1,6 +1,6 @@
 -- Gives code blocks
 vim.opt.shell = "/bin/bash"
-vim.g.markdown_fenced_languages = {"html", "javascript", "typescript", "css", "scss", "lua", "vim"}
+vim.g.markdown_fenced_languages = { "html", "javascript", "typescript", "css", "scss", "lua", "vim" }
 vim.opt.nu = true
 vim.opt.relativenumber = true
 -- set shell=/bin/bash
@@ -34,3 +34,4 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 -- vim.g.netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 vim.g.mapleader = " "
+vim.opt.splitright = true

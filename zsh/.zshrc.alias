@@ -18,7 +18,8 @@ alias ggpull='git pull origin $(current_branch)'
 alias ggpur='git pull --rebase origin $(current_branch)'
 alias ggpush='git push origin $(current_branch)'
 alias ggpnp='git pull origin $(current_branch) && git push origin $(current_branch)'
-alias gs="nvim  . -c 'G' -c 'call CloseAllBuffersButCurrent()'"
+# alias gs="nvim  . -c 'G' -c 'call CloseAllBuffersButCurrent()'"
+alias gs="nvim -c 'to vert G | resize 80'"
 alias ll=" ls -la"
 alias ggdev=" git checkout master && git branch -D develop && git fetch origin develop && git switch develop"
 
