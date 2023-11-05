@@ -28,14 +28,7 @@ export EDITOR='nvim'
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
 export LS_COLORS='rs=0:no=00:mi=00:mh=00:ln=01;36:or=01;31:di=01;34:ow=04;01;34:st=34:tw=04;34:pi=01;33:so=01;33:do=01;33:bd=01;33:cd=01;33:su=01;35:sg=01;35:ca=01;35:ex=01;32:'
-export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
 export VI_MODE_SET_CURSOR=true
 export VI_MODE_SET_CURSOR=true
 export XDG_DATA_HOME=~/.local/share
-export BROWSER=google-chrome
-# export BROWSER='/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe --profile-directory="Default"'
-# export BROWSER='mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe'
-# export BROWSER='mnt/c/Program Files\ \(x86\)/Google/Chrome/Application/chrome.exe' no work
-# export BROWSER=/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe  works
-# /mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe --profile-directory="Default"
-# /mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe --profile-directory="Default"
+export BROWSER='/mnt/c/Windows/explorer.exe'
