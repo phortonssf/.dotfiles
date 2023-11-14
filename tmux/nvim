@@ -1,0 +1,2 @@
+client_prefix=0
+pane_title=tmux: tmux display-message -a | grep prefix > nvim - tmux

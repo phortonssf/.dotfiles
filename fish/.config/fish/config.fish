@@ -24,28 +24,69 @@ egrep "^export " ~/.bashrc | while read e
     set -xg $var $value
 end
 
+# set -Ux FZF_DEFAULT_OPTS "\
+# --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
+# --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
+# --color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796"
+set -g FZF_CTRL_T_COMMAND "command find -L \$dir -type f 2> /dev/null | sed '1d; s#^\./##'"
+set -g fish_prompt_at_top true
+# ~/.tmux/plugins
+fish_add_path /home/digitaldive/.cargo/bin
+fish_add_path $HOME/.tmux/plugins/t-smart-tmux-session-manager/bin
+
+# T ENV VARS
+# set -Ux T_SESSION_USE_GIT_ROOT true
+# set -Ux T_SESSION_NAME_INCLUDE_PARENT true
+
+
+# ~/.config/tmux/plugins
+# fish_add_path $home/.config/tmux/plugins/t-smart-tmux-session-manager/bin
+fish_ssh_agent
 #only run if inter */
 if status is-interactive
+    set fish_color_selection --background="#C29DF1"
     # commands to run in interactive sessions can go here
+    set --universal pure_show_system_time false
+    # set --universal pure_color_system_time pure_color_mute
+    set -g fish_key_bindings fish_vi_key_bindings
+    bind -M insert \cc kill-whole-line repaint
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    bass ~/.local/bin/tmux-startup
-    #fish_vi_key_bindings
+    # bass ~/.local/bin/tmux-startup
+    fish_vi_key_bindings
     set -U fish_escape_delay_ms 100
     alias m='mark'
     alias g='jump'
     alias gs="nvim -c 'to vert G | vertical resize 80'"
     alias ff='fd --type f --strip-cwd-prefix --hidden | fzf'
-    alias gitroot='cd $(git rev-parse --show-toplevel)'
-
+    alias groot='cd $(git rev-parse --show-toplevel)'
+    alias troot='cd $TMUX_ROOT'
+    # alias tkill='tmux list-sessions | grep -v attached | (awk 'begin{fs=":"}{print $1}' )| xargs -n 1 tmux kill-session -t || echo No sessions to kill'
+    # alias killunattachedtmux 'tmux ls | awk "BEGIN{FS=\":\"}!/attached/{print $1}" | xargs -n 1 tmux kill-session -t'
+    # alias tkill= "tmux ls | awk 'BEGIN{FS=":"}!/attached/{print $1}' | xargs -n 1 tmux kill-ses -t"
     set -U fish_cursor_insert line
     set -U fish_cursor_replace_one underscore
+    set fish_cursor_visual block blink
+
     bind \cJ accept-autosuggestion
+    bind -M insert \cz fore_ground
+    bind -m defaul \cz fore_ground
     bind -M insert \cj accept-autosuggestion execute
     bind -k -M insert nul nextd-or-forward-word
+
+
+    # tmux protectsion
+    bind -M insert ~ true
+    bind -k f8 true
+    # bind -e -M normal -k F8 true
+
+    # bind -e -M normal -k F8 true
+    bind -M insert \ca true
+    bind -M normal \ca true
     #bind -e \[1;2P
     bind \cg 'commandline -i " "'
     #bind -M insert \c@ nextd-or-forward-word
 
+    set pure_symbol_container_prefix " "
     set pure_symbol_prompt ' '
     set pure_symbol_reverse_prompt ' '
     # set pure_symbol_prompt ' '
@@ -83,7 +124,7 @@ if status is-interactive
     end
 
 end
-
+starship init fish | source
 
 # Load fishmarks (http://github.com/techwizrd/fishmarks)
 . $HOME/.fishmarks/marks.fish
