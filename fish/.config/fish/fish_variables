@@ -11,16 +11,12 @@ SETUVAR SSH_KEYS_TO_AUTOLOAD:/home/digitaldive/\x2essh/id_rsa\x1e/home/digitaldi
 SETUVAR --export T_SESSION_NAME_INCLUDE_PARENT:true
 SETUVAR --export T_SESSION_USE_GIT_ROOT:true
 SETUVAR __fish_initialized:3400
-SETUVAR _fisher_catppuccin_2F_fish_files:\x7e/\x2econfig/fish/themes/Catppuccin\x20Frappe\x2etheme\x1e\x7e/\x2econfig/fish/themes/Catppuccin\x20Latte\x2etheme\x1e\x7e/\x2econfig/fish/themes/Catppuccin\x20Macchiato\x2etheme\x1e\x7e/\x2econfig/fish/themes/Catppuccin\x20Mocha\x2etheme
-SETUVAR _fisher_edc_2F_bass_files:\x7e/\x2econfig//fish/functions/__bass\x2epy\x1e\x7e/\x2econfig//fish/functions/bass\x2efish
 SETUVAR _fisher_jorgebucaran_2F_autopair_2E_fish_files:\x7e/\x2econfig/fish/functions/_autopair_backspace\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_insert_left\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_insert_right\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_insert_same\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_tab\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/autopair\x2efish
-SETUVAR _fisher_jorgebucaran_2F_fish_2D_bax_files:\x7e/\x2econfig/fish/functions/replay\x2efish\x1e\x7e/\x2econfig/fish/completions/replay\x2efish
 SETUVAR _fisher_jorgebucaran_2F_replay_2E_fish_files:\x7e/\x2econfig/fish/functions/replay\x2efish\x1e\x7e/\x2econfig/fish/completions/replay\x2efish
 SETUVAR _fisher_joshmedeski_2F_fish_2D_lf_2D_icons_files:\x7e/\x2econfig/fish/conf\x2ed/lf\x2dicons\x2efish
-SETUVAR _fisher_laughedelic_2F_pisces_files:\x7e/\x2econfig/fish/functions/_pisces_append\x2efish\x1e\x7e/\x2econfig/fish/functions/_pisces_backspace\x2efish\x1e\x7e/\x2econfig/fish/functions/_pisces_bind_pair\x2efish\x1e\x7e/\x2econfig/fish/functions/_pisces_complete\x2efish\x1e\x7e/\x2econfig/fish/functions/_pisces_insert_identical\x2efish\x1e\x7e/\x2econfig/fish/functions/_pisces_insert_left\x2efish\x1e\x7e/\x2econfig/fish/functions/_pisces_insert_right\x2efish\x1e\x7e/\x2econfig/fish/functions/_pisces_jump\x2efish\x1e\x7e/\x2econfig/fish/functions/_pisces_lookup\x2efish\x1e\x7e/\x2econfig/fish/functions/_pisces_remove\x2efish\x1e\x7e/\x2econfig/fish/functions/_pisces_should_insert\x2efish\x1e\x7e/\x2econfig/fish/functions/_pisces_skip\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/pisces\x2efish
 SETUVAR _fisher_meaningful_2D_ooo_2F_sponge_files:\x7e/\x2econfig/fish/functions/_sponge_clear_state\x2efish\x1e\x7e/\x2econfig/fish/functions/_sponge_on_exit\x2efish\x1e\x7e/\x2econfig/fish/functions/_sponge_on_postexec\x2efish\x1e\x7e/\x2econfig/fish/functions/_sponge_on_preexec\x2efish\x1e\x7e/\x2econfig/fish/functions/_sponge_on_prompt\x2efish\x1e\x7e/\x2econfig/fish/functions/_sponge_remove_from_history\x2efish\x1e\x7e/\x2econfig/fish/functions/sponge_filter_failed\x2efish\x1e\x7e/\x2econfig/fish/functions/sponge_filter_matched\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/sponge\x2efish
 SETUVAR _fisher_patrickf1_2F_fzf_2E_fish_files:\x7e/\x2econfig/fish/functions/_fzf_configure_bindings_help\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_extract_var_info\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_preview_changed_file\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_preview_file\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_report_diff_type\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_report_file_type\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_directory\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_git_log\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_git_status\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_history\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_processes\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_variables\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_wrapper\x2efish\x1e\x7e/\x2econfig/fish/functions/fzf_configure_bindings\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/fzf\x2efish\x1e\x7e/\x2econfig/fish/completions/fzf_configure_bindings\x2efish
-SETUVAR _fisher_plugins:patrickf1/fzf\x2efish\x1ejorgebucaran/autopair\x2efish\x1emeaningful\x2dooo/sponge\x1eedc/bass\x1ecatppuccin/fish\x1ejorgebucaran/fish\x2dbax\x1ejorgebucaran/replay\x2efish\x1ejoshmedeski/fish\x2dlf\x2dicons\x1elaughedelic/pisces
+SETUVAR _fisher_plugins:patrickf1/fzf\x2efish\x1ejorgebucaran/replay\x2efish\x1ejoshmedeski/fish\x2dlf\x2dicons\x1emeaningful\x2dooo/sponge\x1ejorgebucaran/autopair\x2efish
 SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR fish_color_autosuggestion:9e9e9e
 SETUVAR fish_color_cancel:ed8796
@@ -43,7 +39,7 @@ SETUVAR fish_color_param:f0c6c6
 SETUVAR fish_color_quote:a6da95
 SETUVAR fish_color_redirection:f5bde6
 SETUVAR fish_color_search_match:\x2d\x2dbackground\x3d363a4f
-SETUVAR fish_color_selection:\x2d\x2dbackground\x3d\x23C29DF1
+SETUVAR fish_color_selection:\x2d\x2dbackground\x3d\x237851A9
 SETUVAR fish_color_status:red
 SETUVAR fish_color_user:8bd5ca
 SETUVAR fish_color_valid_path:\x2d\x2dunderline
@@ -66,7 +62,6 @@ SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
 SETUVAR fish_user_paths:/home/digitaldive/\x2ecargo/bin\x1e/home/digitaldive/\x2etmux/plugins/t\x2dsmart\x2dtmux\x2dsession\x2dmanager/bin\x1e/home/linuxbrew/\x2elinuxbrew/opt/node\x4020/bin\x1e/home/linuxbrew/\x2elinuxbrew/opt/node\x4018/bin\x1e/home/linuxbrew/\x2elinuxbrew/opt/fzf/bin
 SETUVAR --export foo:bar
-SETUVAR pisces_pairs:\x28\x2c\x29\x1e\x5b\x2c\x5d\x1e\x7b\x2c\x7d\x1e\x22\x2c\x22\x1e\x27\x2c\x27
 SETUVAR pure_show_system_time:false
 SETUVAR sponge_allow_previously_successful:true
 SETUVAR sponge_delay:2
