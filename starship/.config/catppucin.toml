@@ -1,71 +1,52 @@
 palette = "catppuccin_frappe"
+
 format = """
+$username\
+$hostname\
 $directory\
-$git_branch\
 $git_state\
 $git_status\
-$python\
-$docker_context\
 $line_break\
-$jobs\
 $character"""
 
-[directory]
-style = "blue"
-truncation_length = 4
-truncate_to_repo = true
-truncation_symbol = ''
-before_repo_root_style = 'blue'
-repo_root_style = 'blue'
-# repo_root_format = "[$repo_root][$path]"
-repo_root_format = '[~/$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) '
 
-[jobs]
-format = "[$number$symbol ](blue)"
-symbol = ' '
-# threshhold = 1
-# number_threshold = 3
-# symbol_threshold = 1
+[directory]
+truncation_length = 2
+# Catppuccin 'lavender'
+style = "bold sapphire"
+read_only = " 󰌾"
 
 [character]
-success_symbol = "[  ](blue)"
-error_symbol = "[  ](maroon)"
-vimcmd_symbol = "[  ](blue)"
-vimcmd_visual_symbol = "[  ](sapphire)"
-vimcmd_replace_symbol = "[ 󰰟](red)"
+success_symbol = "[ ](mauve)"
+error_symbol = "[ ](maroon)"
+vimcmd_symbol = "[ ](mauve)"
+
 
 [git_branch]
-format = "[$branch ]($style)"
-style = "bright-black"
-
+format = "[$branch]($style)"
+style = "teal"
 
 [git_status]
-format = "[[$staged](teal)[($conflicted$untracked$modified$staged)](peach) ($ahead$behind$stashed)]($style)"
+format = "[[($conflicted$untracked$modified)](peach) ($ahead_behind$stashed)]($style)"
 style = "cyan"
 ahead = '⇡'
-behind = '⇣'
-untracked = ''
-staged = '+'
+behind = '⇣' 
 conflicted = " "
 # untracked = " "
-modified = " *"
-diverged = "⇕ "
+modified = "*"
 # # staged = "​"
 # # renamed = "​"
 # # deleted = "​"
- # stashed = "󰘓"
-  stashed = " 󰜦"
+ stashed = "≡"
 
 [git_state]
-format = '\([$state( $progress_current/$progress_total)$rebase$revert$bisect]($style)\) '
-rebase = 'REBASING'
-revert = 'REVERTING'
-bisect = 'BISECTING'
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
 style = "bright-black"
 
-# [cmd_duration]
-# format = "[$duration]($style) "
-# style = "yellow"
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
+
 
 [python]
 symbol = " "
@@ -73,17 +54,14 @@ format = "[$virtualenv]($style) "
 style = "bright-black"
 
 
-# [docker_context]
-# symbol = " "
-[docker_context]
-format = 'via [🐋 $context](blue bold)'
-
 [aws]
 symbol = "  "
 
 [conda]
 symbol = " "
 
+[docker_context]
+symbol = " "
 
 [golang]
 symbol = " "
@@ -101,12 +79,19 @@ symbol = "󰍛 "
 symbol = " "
 
 [os.symbols]
+Alpine = " "
 Amazon = " "
 Android = " "
+EndeavourOS = " "
 Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
 Linux = " "
 Mabox = " "
 Macos = " "
+Raspbian = " "
 Ubuntu = " "
 Unknown = " "
 Windows = "󰍲 "
