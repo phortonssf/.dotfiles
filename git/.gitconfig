@@ -24,6 +24,7 @@
 	root = !pwd
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RFX
+	editor = nvim
 [interactive]
 	diffFilter = diff-so-fancy --patch
 [color]
