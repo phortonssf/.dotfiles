@@ -148,5 +148,4 @@ if status is-interactive
     end
 
 end
-
 # Load fishmarks (http://github.com/techwizrd/fishmarks)
