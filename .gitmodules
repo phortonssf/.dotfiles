@@ -1,0 +1,4 @@
+[submodule "nvim/.config/.dotfiles"]
+[submodule "nvim"]
+	path = nvim/.config/nvim
+	url = git@github.com:phortonssf/nvim.git
