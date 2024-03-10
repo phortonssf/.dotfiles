@@ -13,12 +13,12 @@ $character"""
 [directory]
 style = "blue"
 truncation_length = 4
-truncate_to_repo = true
-truncation_symbol = ''
+truncate_to_repo = false 
+truncation_symbol = '.../'
 before_repo_root_style = 'blue'
-repo_root_style = 'blue'
+repo_root_style = 'lavender'
 # repo_root_format = "[$repo_root][$path]"
-repo_root_format = '[~/$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) '
+repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) '
 
 [jobs]
 format = "[$number$symbol ](blue)"
