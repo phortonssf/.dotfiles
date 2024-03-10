@@ -1,6 +1,6 @@
 # setopt hist_save_no_dups
-export lc_all=en_us.utf-8
-export lang=en_us.utf-8
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 export path=$path:~/bin
 export path=$path:~/.local/bin # set aws cli default pager
 export aws_pager="nvim" dont require cd to change dir
