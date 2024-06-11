@@ -61,7 +61,7 @@ vim.opt.laststatus = 2
 vim.opt.background = dark
 --
 -- " Format on paste
-vim.opt.pastetoggle = "<F2>"
+-- vim.opt.pastetoggle = "<F2>"
 vim.opt.showmode = false
 -- " Give more space for displaying messages.
 vim.opt.cmdheight = 2

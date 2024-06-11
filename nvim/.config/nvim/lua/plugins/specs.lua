@@ -1,6 +1,6 @@
 local M = {
   "edluffy/specs.nvim",
-  enable = false,
+  enable = true,
 }
 
 function M.config()
@@ -13,7 +13,7 @@ function M.config()
       blend = 50, -- starting blend, between 0-100 (fully transparent), see :h winblend
       width = 15,
       winhl = "PMenu",
-      fader = require("specs").linear_fader,
+      fader = require("specs").pulse_fader,
       resizer = require("specs").shrink_resizer,
     },
     ignore_filetypes = {},
@@ -21,8 +21,8 @@ function M.config()
       nofile = true,
     },
   })
-  vim.api.nvim_set_keymap("n", "n", 'n:lua require("specs").show_specs()<CR>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap("n", "N", 'N:lua require("specs").show_specs()<CR>', { noremap = true, silent = true })
+  vim.nvim.set("n", "n", 'n:lua require("specs").show_specs()<CR>', { noremap = true, silent = true })
+  vim.nvim.set("n", "N", 'N:lua require("specs").show_specs()<CR>', { noremap = true, silent = true })
 end
 
 return M
