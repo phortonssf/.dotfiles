@@ -31,7 +31,9 @@ set -g FZF_CTRL_T_COMMAND "command find -L \$dir -type f 2> /dev/null | sed '1d;
 set -g fish_prompt_at_top true
 # ~/.tmux/plugins
 fish_add_path /home/digitaldive/.cargo/bin
-fish_add_path $HOME/.tmux/plugins/t-smart-tmux-session-manager/bin
+
+# t-smart-tmux-session-manager
+# fish_add_path $HOME/.tmux/plugins/t-smart-tmux-session-manager/bin
 
 # T ENV VARS
 # set -Ux T_SESSION_USE_GIT_ROOT true
@@ -61,6 +63,7 @@ if status is-interactive
     alias groot='cd $(git rev-parse --show-toplevel)'
     alias troot='cd $TMUX_ROOT'
     alias tk='tmux kill-server'
+    alias T='sesh connect $(sesh list | fzf)'
     # alias tkill='tmux list-sessions | grep -v attached | (awk 'begin{fs=":"}{print $1}' )| xargs -n 1 tmux kill-session -t || echo No sessions to kill'
     # alias killunattachedtmux 'tmux ls | awk "BEGIN{FS=\":\"}!/attached/{print $1}" | xargs -n 1 tmux kill-session -t'
     # alias tkill= "tmux ls | awk 'BEGIN{FS=":"}!/attached/{print $1}' | xargs -n 1 tmux kill-ses -t"
