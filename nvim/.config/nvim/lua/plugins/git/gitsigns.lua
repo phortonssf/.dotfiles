@@ -10,36 +10,29 @@ function M.config()
     end
   end
   require("gitsigns").setup({
-    diff_opts = {
-      -- vertical = false,
-    },
     signs = {
-      add = { hl = "gitsignsadd", text = "▍", numhl = "gitsignsaddnr", linehl = "gitsignsaddln" },
-      change = {
-        hl = "gitsignschange",
-        text = "▍",
-        numhl = "gitsignschangenr",
-        linehl = "gitsignschangeln",
-      },
-      delete = {
-        hl = "gitsignsdelete",
-        text = "▸",
-        numhl = "gitsignsdeletenr",
-        linehl = "gitsignsdeleteln",
-      },
-      topdelete = {
-        hl = "gitsignsdelete",
-        text = "▾",
-        numhl = "gitsignsdeletenr",
-        linehl = "gitsignsdeleteln",
-      },
-      changedelete = {
-        hl = "gitsignschange",
-        text = "▍",
-        numhl = "gitsignschangenr",
-        linehl = "gitsignschangeln",
-      },
-      untracked = { hl = "gitsignsadd", text = "▍", numhl = "gitsignsaddnr", linehl = "gitsignsaddln" },
+      add = { text = "┃" },
+      change = { text = "┃" },
+      delete = { text = "_" },
+      topdelete = { text = "‾" },
+      changedelete = { text = "~" },
+      untracked = { text = "┆" },
+    },
+    signs_staged = {
+      add = { text = "┃" },
+      change = { text = "┃" },
+      delete = { text = "_" },
+      topdelete = { text = "‾" },
+      changedelete = { text = "~" },
+      untracked = { text = "┆" },
+    },
+    signs_staged_enable = true,
+    signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+    numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
+    linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+    word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
+    watch_gitdir = {
+      follow_files = true,
     },
     on_attach = function(bufnr)
       local gs = package.loaded.gitsigns

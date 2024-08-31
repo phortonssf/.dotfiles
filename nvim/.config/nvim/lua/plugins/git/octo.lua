@@ -1,3 +1,5 @@
+return {}
+
 -- local M = { "pwntester/octo.nvim" }
 -- M.config = function()
 --   require("octo").setup({
