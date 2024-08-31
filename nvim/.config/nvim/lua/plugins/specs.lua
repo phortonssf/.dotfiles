@@ -21,8 +21,8 @@ function M.config()
       nofile = true,
     },
   })
-  vim.nvim.set("n", "n", 'n:lua require("specs").show_specs()<CR>', { noremap = true, silent = true })
-  vim.nvim.set("n", "N", 'N:lua require("specs").show_specs()<CR>', { noremap = true, silent = true })
+  vim.keymap.set("n", "n", 'n:lua require("specs").show_specs()<CR>', { noremap = true, silent = true })
+  vim.keymap.set("n", "N", 'N:lua require("specs").show_specs()<CR>', { noremap = true, silent = true })
 end
 
 return M
