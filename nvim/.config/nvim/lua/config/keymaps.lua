@@ -2,12 +2,13 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 local wk = require("which-key")
-wk.register({
-  ["<leader>p"] = "which_key_ignore",
-  ["<leader>P"] = "which_key_ignore",
-  ["<leader>d"] = "which_key_ignore",
-  ["j"] = "which_key_ignore",
-  ["<leader>`"] = "which_key_ignore",
+wk.add({
+  { "<leader>w", proxy = "<c-w>", group = "windows" }, -- proxy to window mappings
+  -- ["<leader>p"] = "which_key_ignore",
+  -- ["<leader>P"] = "which_key_ignore",
+  -- ["<leader>d"] = "which_key_ignore",
+  -- ["j"] = "which_key_ignore",
+  -- ["<leader>`"] = "which_key_ignore",
 })
 local keymap = vim.api.nvim_set_keymap
 local opt = {
@@ -16,7 +17,7 @@ local opt = {
 }
 --backspace as another leader
 keymap("n", "<bs>", "<space>", { noremap = false })
-vim.keymap.set("n", "<localleader>", '<cmd>lua require("which-key").show("\\\\")<cr>')
+-- vim.keymap.set("n", "<localleader>", '<cmd>lua require("which-key").show("\\\\")<cr>')
 --remove binds
 vim.keymap.del("n", "<c-_>")
 keymap("n", "<c-w>r", "<cmd>vs#<cr>", {})

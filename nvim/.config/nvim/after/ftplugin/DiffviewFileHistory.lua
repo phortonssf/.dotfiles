@@ -17,7 +17,7 @@ function M.whichkey(maps, opts)
   if opts == nil then
     opts = {}
   end
-  wk.register(maps, vim.tbl_extend("keep", opts, M.wkopts))
+  wk.add(maps, vim.tbl_extend("keep", opts, M.wkopts))
 end
 
 function M.localleader(maps, opts)

@@ -2,7 +2,7 @@ return {
   "sindrets/diffview.nvim",
   -- lazy = true,
   event = "VeryLazy",
-  -- cmd = "Diffview Open",
+  cmd = "DiffviewOpen",
   -- require("Diffview").setup({
   keys = {
     { "<leader>gd", "<cmd>DiffviewFileHistory % <cr>", desc = "Diffview Current File" },

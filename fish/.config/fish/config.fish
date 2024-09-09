@@ -60,6 +60,7 @@ if status is-interactive
     alias gb='git branch -v'
     alias gbc='git switch -c'
     alias gbs='git switch $(git br | fzf | awk '\''{print $1}'\'')'
+    alias diffview='nvim +DiffviewOpen'
 
     alias gconf='nvim ~/.dotfiles/git/.gitconfig'
     alias gs="nvim -c 'to vert G | vertical resize 80'"
