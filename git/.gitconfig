@@ -8,8 +8,8 @@
 	outgoing = !git fetch && git log --oneline @{u}..
 	last = log -1 HEAD --stat
 	se = !git rev-list --all | xargs git grep -F
-  rhp = git reset --hard origin/$(current_branch)
-  cnoc = git commit -a --amend --no-edit
+  rhp = reset --hard origin/$(current_branch)
+  cnoc = commit -a --amend --no-edit
   restfile = git reset @~ "$@" && git commit --amend --no-edit
   forcep =  git push --force-with-lease origin $(current_branch)
   nb = checkout -b
@@ -41,3 +41,9 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential

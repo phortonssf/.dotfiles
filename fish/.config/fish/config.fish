@@ -38,13 +38,14 @@ fish_add_path /home/digitaldive/.cargo/bin
 # T ENV VARS
 # set -Ux T_SESSION_USE_GIT_ROOT true
 # set -Ux T_SESSION_NAME_INCLUDE_PARENT true
-
-
+# wslview for opening browser
+set -g BROWSER wslview
 # ~/.config/tmux/plugins
 # fish_add_path $home/.config/tmux/plugins/t-smart-tmux-session-manager/bin
 # fish_ssh_agent
 #only run if inter */
 if status is-interactive
+    eval (ssh-agent -c)
     # set fish_color_selection --background="#C29DF1"
     set fish_color_selection --background="#7851A9"
     # set fish_color_selection --background="#120043"
@@ -56,6 +57,9 @@ if status is-interactive
     set -U fish_escape_delay_ms 100
 
     # TODO add alias for grex regex helper
+    alias gb='git branch -v'
+    alias gbc='git switch -c'
+    alias gbs='git switch $(git br | fzf | awk '\''{print $1}'\'')'
 
     alias gconf='nvim ~/.dotfiles/git/.gitconfig'
     alias gs="nvim -c 'to vert G | vertical resize 80'"
@@ -82,12 +86,19 @@ if status is-interactive
     bind -M insert \cc kill-whole-line repaint
 
     # LF CTRL O open dir after close
-    bind -M insert \co 'set old_tty (stty -g); stty sane; lfcd; stty $old_tty; commandline -f repaint'
-    # ctrl enter accept-autosuggestion and run
+    bind -M insert \cn 'set old_tty (stty -g); stty sane; lfcd; stty $old_tty; commandline -f repaint'
+
     # runs fg to return foreground process 
     bind -M insert \cz fore_ground
     bind -M default \cz fore_ground
 
+    # doensn't work
+    # bind -M insert \co prevd
+    # bind -M insert \ci nextd
+    bind -M insert \ci nextd-or-forward-word
+    bind -M insert \co prevd-or-backward-word
+
+    # ctrl enter accept-autosuggestion and run
     bind -M insert \cj accept-autosuggestion execute
     bind -k -M insert nul nextd-or-forward-word
 
