@@ -46,6 +46,7 @@ set -g BROWSER wslview
 #only run if inter */
 if status is-interactive
     eval (ssh-agent -c)
+    ssh-add
     # set fish_color_selection --background="#C29DF1"
     set fish_color_selection --background="#7851A9"
     # set fish_color_selection --background="#120043"

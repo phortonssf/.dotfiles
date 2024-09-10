@@ -21,8 +21,8 @@
   l = log --graph --pretty='format:%C(red)%d%C(reset) %C(yellow)%h%C(reset) %ar %C(green)%aN%C(reset) %s'
   rename = branch -m
   rh = reset --hard
-	root = rev-parse --show-toplevel
-	root = !pwd
+  groot = rev-parse --show-toplevel
+  root = !pwd
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [interactive]
