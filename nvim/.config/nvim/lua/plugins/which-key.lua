@@ -6,6 +6,7 @@ return {
     vim.o.timeoutlen = 300
   end,
   keys = {
+    { "<leader>w^", false },
     {
       "<localleader>",
       function()
@@ -20,7 +21,7 @@ return {
     -- refer to the configuration section below
     plugins = {
       marks = true, -- shows a list of your marks on ' and `
-      re
+      registers = true, -- shows your registers on " in normal or <c-r> in insert mode
       -- the presets plugin, adds help for a bunch of default keybindings in neovim
       -- no actual key bindings are created
       spelling = {

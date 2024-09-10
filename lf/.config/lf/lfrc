@@ -23,3 +23,9 @@ map Y %echo %fx% | clip.exe
 # open file in nvim
 map V &nvim-qt %f%
 # archive management
+cmd open_nvim ${{
+    nvim "$f"
+}}
+
+map <enter> open_nvim
+

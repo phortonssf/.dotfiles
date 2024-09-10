@@ -3,7 +3,17 @@
 -- Add any additional keymaps here
 local wk = require("which-key")
 wk.add({
-  { "<leader>w", proxy = "<c-w>", group = "windows" }, -- proxy to window mappings
+  {
+    "<leader>ww",
+    function()
+      vim.cmd("wincmd p")
+    end,
+    desc = "prev window",
+  },
+  { "<leader>O", hidden = true },
+  { "<leader>p", hidden = true },
+  { "<leader>P", hidden = true },
+  { "<leader>b", hidden = true },
   -- ["<leader>p"] = "which_key_ignore",
   -- ["<leader>P"] = "which_key_ignore",
   -- ["<leader>d"] = "which_key_ignore",
@@ -20,7 +30,7 @@ keymap("n", "<bs>", "<space>", { noremap = false })
 -- vim.keymap.set("n", "<localleader>", '<cmd>lua require("which-key").show("\\\\")<cr>')
 --remove binds
 vim.keymap.del("n", "<c-_>")
-keymap("n", "<c-w>r", "<cmd>vs#<cr>", {})
+-- keymap("n", "<c-w>r", "<cmd>vs#<cr>", { desc = "reopen window" })
 
 --esc
 keymap("i", "jk", "<esc>", {})
@@ -44,7 +54,7 @@ keymap("n", "H", "^", opt)
 keymap("n", "L", "$", opt) --yank end of line
 keymap("n", "Y", "y$", opt)
 keymap("n", "<leader>p", "o<esc>p", { desc = "paste below line" })
-keymap("n", "<leader>p", "ko<esc>p", { desc = "paste above line" })
+keymap("n", "<leader>P", "ko<esc>p", { desc = "paste above line" })
 --cut
 keymap("v", "<leader>d", '"+d', opt)
 keymap("n", "<leader>dd", "yydd", opt)
@@ -92,3 +102,26 @@ keymap("n", "<", "<gv", opt)
 keymap("v", "<", "<gv", opt)
 keymap("n", ">", ">gv", opt)
 keymap("v", ">", ">gv", opt)
+
+-- GOT TO PREV WINDOW AFTER FLASH
+_G.current_window_id = nil
+
+-- keybinding to get and print the current window id
+vim.keymap.set("n", "s", function()
+  _G.previous_window_id = vim.api.nvim_get_current_win()
+  print(_G.previous_window_id)
+  require("flash").jump()
+end, { noremap = true, silent = true })
+
+-- Function to go to the saved window ID
+local function go_to_saved_window()
+  if _G.previous_window_id then
+    vim.api.nvim_set_current_win(_G.previous_window_id)
+  else
+    print("No window ID saved")
+  end
+end
+-- Keybinding to go to the saved window ID
+vim.keymap.set("n", "<leader>^", go_to_saved_window, { desc = "flash return", noremap = true, silent = true })
+
+-- vim.keymap.set("n", "<c-w><c-w>", "<c-w><c-p>")

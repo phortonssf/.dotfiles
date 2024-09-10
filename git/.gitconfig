@@ -3,11 +3,12 @@
 	email = phorton@softstackfactory.com
 	name = Peter Horton
 [alias]
+  fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
   conflicted = '!nvim +Conflicted'
-	incoming = !git fetch && git log --oneline ..@{u}
-	outgoing = !git fetch && git log --oneline @{u}..
-	last = log -1 HEAD --stat
-	se = !git rev-list --all | xargs git grep -F
+  incoming = !git fetch && git log --oneline ..@{u}
+  outgoing = !git fetch && git log --oneline @{u}..
+  last = log -1 HEAD --stat
+  se = !git rev-list --all | xargs git grep -F
   rhp = reset --hard origin/$(current_branch)
   cnoc = commit -a --amend --no-edit
   restfile = git reset @~ "$@" && git commit --amend --no-edit
@@ -47,3 +48,5 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
+[rebase]
+	autosquash = true
