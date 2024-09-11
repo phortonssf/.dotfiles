@@ -23,6 +23,7 @@
   rh = reset --hard
   groot = rev-parse --show-toplevel
   root = !pwd
+	staash = stash --all
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [interactive]
@@ -50,3 +51,11 @@
 	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
 [rebase]
 	autosquash = true
+[rerere]
+	enabled = true
+[column]
+	ui = auto
+[branch]
+	sort = --committerdate
+[maintenance]
+	repo = /home/digitaldive/.dotfiles
