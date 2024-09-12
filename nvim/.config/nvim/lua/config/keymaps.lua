@@ -30,6 +30,7 @@ keymap("n", "<bs>", "<space>", { noremap = false })
 -- vim.keymap.set("n", "<localleader>", '<cmd>lua require("which-key").show("\\\\")<cr>')
 --remove binds
 vim.keymap.del("n", "<c-_>")
+vim.keymap.set("v", "u", function() end, { noremap = true, silent = true })
 -- keymap("n", "<c-w>r", "<cmd>vs#<cr>", { desc = "reopen window" })
 
 --esc
