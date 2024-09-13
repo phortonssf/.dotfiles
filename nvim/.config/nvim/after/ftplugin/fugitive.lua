@@ -163,41 +163,41 @@ function M.Ftplugin()
   end, { desc = "TEST MAPPING 2", buffer = buf })
 
   require("which-key").add({
-    { "a", hidden = true }, -- hide this keymap
-    { "C", hidden = true }, -- hide this keymap
-    { "ca", hidden = true }, -- hide this keymap
-    { "cA", hidden = true }, -- hide this keymap
-    { "cc", hidden = true }, -- hide this keymap
-    { "cf", hidden = true }, -- hide this keymap
-    { "cF", hidden = true }, -- hide this keymap
-    { "ce", hidden = true }, -- hide this keymap
-    { "cmt", hidden = true }, -- hide this keymap
-    { "coo", hidden = true }, -- hide this keymap
-    { "cRe", hidden = true }, -- hide this keymap
-    { "cRa", hidden = true }, -- hide this keymap
-    { "crc", hidden = true }, -- hide this keymap
-    { "crc", hidden = true }, -- hide this keymap
-    { "crn", hidden = true }, -- hide this keymap
-    { "cRw", hidden = true }, -- hide this keymap
-    { "cS", hidden = true }, -- hide this keymap
-    { "cs", hidden = true }, -- hide this keymap
-    { "cs", hidden = true }, -- hide this keymap
-    { "cva", hidden = true }, -- hide this keymap
-    { "crn", hidden = true }, -- hide this keymap
-    { "cva", hidden = true }, -- hide this keymap
-    { "cvc", hidden = true }, -- hide this keymap
-    { "cw", hidden = true }, -- hide this keymap
-    { "cza", hidden = true }, -- hide this keymap
-    { "czA", hidden = true }, -- hide this keymap
-    { "czp", hidden = true }, -- hide this keymap
-    { "czP", hidden = true }, -- hide this keymap
-    { "czs", hidden = true }, -- hide this keymap
-    { "czv", hidden = true }, -- hide this keymap
-    { "czw", hidden = true }, -- hide this keymap
-    { "czz", hidden = true }, -- hide this keymap
-    { "D", hidden = true }, -- hide this keymap
-    { "D", hidden = true }, -- hide this keymap
-    --     U = { "U", "Unstage all" },
+    -- { "a", hidden = true }, -- hide this keymap
+    -- { "C", hidden = true }, -- hide this keymap
+    -- { "ca", hidden = true }, -- hide this keymap
+    -- { "cA", hidden = true }, -- hide this keymap
+    -- { "cc", hidden = true }, -- hide this keymap
+    -- { "cf", hidden = true }, -- hide this keymap
+    -- { "cF", hidden = true }, -- hide this keymap
+    -- { "ce", hidden = true }, -- hide this keymap
+    -- { "cmt", hidden = true }, -- hide this keymap
+    -- { "coo", hidden = true }, -- hide this keymap
+    -- { "cRe", hidden = true }, -- hide this keymap
+    -- { "cRa", hidden = true }, -- hide this keymap
+    -- { "crc", hidden = true }, -- hide this keymap
+    -- { "crc", hidden = true }, -- hide this keymap
+    -- { "crn", hidden = true }, -- hide this keymap
+    -- { "cRw", hidden = true }, -- hide this keymap
+    -- { "cS", hidden = true }, -- hide this keymap
+    -- { "cs", hidden = true }, -- hide this keymap
+    -- { "cs", hidden = true }, -- hide this keymap
+    -- { "cva", hidden = true }, -- hide this keymap
+    -- { "crn", hidden = true }, -- hide this keymap
+    -- { "cva", hidden = true }, -- hide this keymap
+    -- { "cvc", hidden = true }, -- hide this keymap
+    -- { "cw", hidden = true }, -- hide this keymap
+    -- { "cza", hidden = true }, -- hide this keymap
+    -- { "czA", hidden = true }, -- hide this keymap
+    -- { "czp", hidden = true }, -- hide this keymap
+    -- { "czP", hidden = true }, -- hide this keymap
+    -- { "czs", hidden = true }, -- hide this keymap
+    -- { "czv", hidden = true }, -- hide this keymap
+    -- { "czw", hidden = true }, -- hide this keymap
+    -- { "czz", hidden = true }, -- hide this keymap
+    -- { "D", hidden = true }, -- hide this keymap
+    -- { "D", hidden = true }, -- hide this keymap
+    -- --     U = { "U", "Unstage all" },
     -- { "<localleader>U", "Unstage all", desc = "Find File", mode = "n" },
     {
       "<localleader>c",

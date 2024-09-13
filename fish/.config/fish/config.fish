@@ -101,7 +101,7 @@ if status is-interactive
 
     # runs fg to return foreground process 
     bind -M insert \cz fg
-    bind -M default \cz fg
+    bind -M default \cz fore_ground
 
     # bind ctrl-left/right to next  or word
     bind -M insert \e\[1\;5C nextd-or-forward-word
@@ -172,6 +172,11 @@ if status is-interactive
             command sudo $argv
         end
     end
-
+    set -Ux FZF_DEFAULT_OPTS "\
+--color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
+--color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
+--color=marker:#7287fd,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39 \
+--color=selected-bg:#bcc0cc \
+--multi"
 end
 # Load fishmarks (http://github.com/techwizrd/fishmarks)

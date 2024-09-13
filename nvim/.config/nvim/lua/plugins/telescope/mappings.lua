@@ -67,7 +67,12 @@ local function old_files()
     },
   }))
 end
-
+vim.keymap.set(
+  "n",
+  "<leader>sG",
+  ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+  { desc = "live grap args CWD" }
+)
 -- Working
 vim.keymap.set("n", "<leader>fr", old_files, { desc = "Frecency" })
 vim.keymap.set("n", "<leader><space>", "<Cmd>Telescope frecency workspace=CWD<CR>")

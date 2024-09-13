@@ -3,12 +3,12 @@ export LC_ALL=en_US.utf-8
 export LANG=en_US.utf-8
 export PATH=$PATH:~/bin
 export PATH=$PATH:~/.local/bin # set aws cli default pager
-export aws_pager="nvim" dont require cd to change dir
+EXPORT AWS_PAGER="nvim"
 export PATH=/usr/local/bin/:$PATH
 export PATH=~/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin/lvim:$PATH
-export vimsession=-s zsh_disable_compfix=true:
+# export vimsession=-s zsh_disable_compfix=true:
 export PATH=/home/phortonssf/.local/bin:$PATH
 export PATH=$PATH:/mnt/c/windows/system32
 export WINPATH=/mnt/c/users/pedro
@@ -18,20 +18,20 @@ export WINPATH=/mnt/c/users/pedro
 # --color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
 # --color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284"
 
-export FZF_DEFAULT_OPTS="--reverse --border rounded --no-info --color=spinner:#f2d5cf,hl:#e78284 --color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf --color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284,bg+:-1"
+# export FZF_DEFAULT_OPTS="--reverse --border rounded --no-info --color=spinner:#f2d5cf,hl:#e78284 --color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf --color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284,bg+:-1"
 # export fzf_default_command=rg --files --hidden --follow -g '!{.git,.svn,.hg, node_modules} '
-export fzf_alt_c_opts="--preview 'tree -c {} | head -200'"
+export FZF_ALT_C_OPTS="--preview 'tree -c {} | head -200'"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.npm-global/bin/:$PATH
 export GOPATH=/home/linuxbrew/.linuxbrew/bin/go
 export PATH=$GOPATH:$PATH
 
-export helix_runtime=/home/linuxbrew/.linuxbrew/bin/go/helix
-export PATH=$helix_runtime:$PATH
-export aws_vault_backend="pass"
+export HELIX_RUNTIME=/home/linuxbrew/.linuxbrew/bin/go/helix
+export PATH=$HELIX_RUNTIME:$PATH
+export AWS_VAULT_BACKEND="pass"
 export NVM_DIR="$HOME/.nvm"
-export keytimeout=1
+export KEYTIMEOUT=1
 # export editor='vim'
 export EDITOR='nvim'
 export LF_CONFIG_HOME="~/.config"

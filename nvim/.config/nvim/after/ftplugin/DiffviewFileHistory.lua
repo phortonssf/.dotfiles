@@ -34,9 +34,27 @@ function M.localleader(maps, opts)
   )
 end
 function M.Ftplugin()
-  M.localleader({
-    q = { "<cmd> DiffviewClose <cr>", "Close" },
-    f = { "<cmd> DiffviewToggleFiles <cr>", "Toggle the file pane" },
+  require("which-key").add({
+    {
+      "<localleader>q",
+      "<cmd> DiffviewClose <cr>",
+      desc = "Diff ViewClose",
+      -- f = { "<cmd> DiffviewToggleFiles <cr>", "Toggle the file pane" },
+    },
+    {
+
+      "<c-p>",
+      function()
+        require("diffview.config").actions.select_prev_entry()
+      end,
+    },
+    {
+
+      "<c-n>",
+      function()
+        require("diffview.config").actions.select_next_entry()
+      end,
+    },
   })
 end
 return M.Ftplugin()

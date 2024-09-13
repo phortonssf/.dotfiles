@@ -10,6 +10,8 @@ wk.add({
     end,
     desc = "prev window",
   },
+  -- { "<leader>gG", hidden = true },
+  -- { "<leader>gg", hidden = true },
   { "<leader>O", hidden = true },
   { "<leader>p", hidden = true },
   { "<leader>P", hidden = true },
@@ -30,8 +32,8 @@ keymap("n", "<bs>", "<space>", { noremap = false })
 -- vim.keymap.set("n", "<localleader>", '<cmd>lua require("which-key").show("\\\\")<cr>')
 --remove binds
 vim.keymap.del("n", "<c-_>")
-vim.keymap.set("v", "u", function() end, { noremap = true, silent = true })
--- keymap("n", "<c-w>r", "<cmd>vs#<cr>", { desc = "reopen window" })
+vim.keymap.set("v", "u", "<esc>", { noremap = true, silent = true })
+keymap("n", "<c-w>r", "<cmd>vs#<cr>", { desc = "reopen window" })
 
 --esc
 keymap("i", "jk", "<esc>", {})
@@ -54,6 +56,8 @@ keymap("n", "x", '"_x', opt)
 keymap("n", "H", "^", opt)
 keymap("n", "L", "$", opt) --yank end of line
 keymap("n", "Y", "y$", opt)
+-- greatest remap ever paste delete visual
+keymap("x", "p", [["_dP]], {})
 keymap("n", "<leader>p", "o<esc>p", { desc = "paste below line" })
 keymap("n", "<leader>P", "ko<esc>p", { desc = "paste above line" })
 --cut
@@ -110,7 +114,7 @@ _G.current_window_id = nil
 -- keybinding to get and print the current window id
 vim.keymap.set("n", "s", function()
   _G.previous_window_id = vim.api.nvim_get_current_win()
-  print(_G.previous_window_id)
+  -- print(_G.previous_window_id)
   require("flash").jump()
 end, { noremap = true, silent = true })
 
@@ -126,3 +130,133 @@ end
 vim.keymap.set("n", "<leader>^", go_to_saved_window, { desc = "flash return", noremap = true, silent = true })
 
 -- vim.keymap.set("n", "<c-w><c-w>", "<c-w><c-p>")
+function ToggleQuickFix()
+  local quickfix_open = false
+  for _, win in ipairs(vim.fn.getwininfo()) do
+    if win.quickfix == 1 then
+      quickfix_open = true
+      break
+    end
+  end
+
+  if quickfix_open then
+    vim.cmd("cclose")
+  else
+    vim.cmd("copen")
+  end
+end
+
+vim.keymap.set("n", "<leader>xq", ToggleQuickFix, { desc = "togglle quickfix_open" })
+
+-- Function to check if the quickfix window is open
+local function is_quickfix_open()
+  for _, win in ipairs(vim.fn.getwininfo()) do
+    if win.quickfix == 1 then
+      return true
+    end
+  end
+  return false
+end
+
+-- Function to navigate to the next quickfix item if the quickfix window is open
+local function next_quickfix_item()
+  if is_quickfix_open() then
+    vim.cmd("cnext")
+  else
+    print("Quickfix window is not open")
+  end
+end
+
+-- Set the key binding
+-- require("trouble").next(opts)
+local function toggle_quickfix()
+  local quickfix_open = false
+  for _, win in ipairs(vim.fn.getwininfo()) do
+    if win.quickfix == 1 then
+      quickfix_open = true
+      break
+    end
+  end
+
+  if quickfix_open then
+    vim.cmd("cclose")
+  else
+    vim.cmd("copen")
+  end
+end
+
+local function print_table(t, indent)
+  indent = indent or 0
+  local indent_str = string.rep("  ", indent)
+
+  for key, value in pairs(t) do
+    if type(value) == "table" then
+      print(indent_str .. tostring(key) .. ":")
+      print_table(value, indent + 1)
+    else
+      print(indent_str .. tostring(key) .. ": " .. tostring(value))
+    end
+  end
+end
+
+local function trouble_next()
+  local isOpen = require("trouble").is_open(opts)
+  if isOpen == true then
+    require("trouble").next({ jump = true })
+  else
+  end
+end
+local function trouble_prev()
+  local isOpen = require("trouble").is_open(opts)
+  if isOpen == true then
+    require("trouble").prev({ jump = true })
+  else
+  end
+end
+
+vim.keymap.set("n", "<c-n>", trouble_next, { noremap = true, silent = true })
+vim.keymap.set("n", "<c-p>", trouble_prev, { noremap = true, silent = true })
+
+-- Function to get the visual selection
+local function get_visual_selection()
+  vim.cmd('noau normal! "vy"')
+  return vim.fn.getreg("v")
+end
+
+-- Function to escape special characters in the search string
+local function escape_string(str)
+  return vim.fn.escape(str, "\\/.*$^~[]")
+end
+
+-- Function to search and replace
+local function search_replace()
+  local mode = vim.api.nvim_get_mode().mode
+  local search_term
+
+  if mode == "v" then
+    search_term = get_visual_selection()
+  else
+    search_term = vim.fn.expand("<cword>")
+  end
+
+  search_term = escape_string(search_term)
+  local replace_term = vim.fn.input("Replace with: ")
+
+  vim.cmd(":%s/" .. search_term .. "/" .. replace_term .. "/gc")
+end
+-- Keybindings
+vim.keymap.set("n", "<leader>sr", search_replace, { desc = "search and replace", noremap = true, silent = true })
+vim.keymap.set("v", "<leader>sr", search_replace, { desc = "search and replace", noremap = true, silent = true })
+
+local function mark_long_jumps(key)
+  return function()
+    local count = vim.v.count1 -- Use count1 to default to 1 if no count is given
+    if count > 10 then
+      vim.cmd("normal! m'")
+    end
+    vim.cmd("normal! " .. count .. key)
+  end
+end
+
+vim.keymap.set("n", "j", mark_long_jumps("j"), { noremap = true, silent = true })
+vim.keymap.set("n", "k", mark_long_jumps("k"), { noremap = true, silent = true })

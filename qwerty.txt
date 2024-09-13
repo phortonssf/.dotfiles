@@ -1,11 +1,18 @@
-[=]>[\]
+[tab]>[escape]
 [caps]>[kpshift]
 [kp-caps]>[kpshift]
-[kp-c]>[caps]
+[kp-C]>[caps]
+[scroll]>[shutdn]
+[kp=]>[kp=mac]
 [\]>[=]
+[kp-lctrl]>[kp-lwin]
+[delete]>[tab]
+[kp-rctrl]>[kp-rwin]
+[kp-H]>[left]
 [rwin]>[ralt]
-[kp-rwin]>[kp-ralt]
+[kp-rwin]>[kp-rctrl]
 [pdown]>[rwin]
+{}>[\]
 {1}>{-rshift}{1}{+rshift}
 {2}>{-rshift}{2}{+rshift}
 {3}>{-rshift}{3}{+rshift}
@@ -24,7 +31,7 @@
 {rshift}{6}>{6}
 {rshift}{7}>{7}
 {rshift}{8}>{8}
-{rshift}{9}>{9}
+{rshift}{9}>{9  
 {rshift}{0}>{0}
 {lshift}{1}>{1}
 {lshift}{2}>{2}
@@ -36,8 +43,51 @@
 {lshift}{8}>{8}
 {lshift}{9}>{9}
 {lshift}{0}>{0}
-{lctrl}{o}>{cbrack}
-{lctrl}{i}>{obrack}
-[delete]>[tab][t&h100][meh]
-[tab]>[escape]
+
+*binding for windows to avoid the linkdin shorcut
 {lctrl}{;}>{-rshift}{F1}{+rshift}
+
+[delete]>[tab][t&h94][meh]
+
+*make ' kp-shift
+
+[']>[kpshift]
+[kp-']>[kpshift]
+
+*quotes '"
+[kp-q]>[']
+{kp-w}>{-lshift}{'}{+lshift}
+
+*()
+{kp-e}>{-lshift}{9}{+lshift}
+{kp-r}>{-lshift}{0}{+lshift}
+
+*{}
+{kp-d}>{-lshift}{obrack}{+lshift}
+{kp-f}>{-lshift}{cbrack}{+lshift}
+
+*[]
+{kp-a}>{obrack}
+{kp-s}>{cbrack}
+
+
+*hyper key makes hyper JKL: move spaces win
+[end]>[lwin][t&h90][hyper]
+
+*full screen
+{lalt}{enter}>{F11}
+[home]>[rshift]
+[pup]>[lshift]
+
+*VIM movement on kp layerasdf
+*[kp-h]>[left]
+*[kp4]>[down]
+*[kp5]>[up]
+*[kp6]>[right]
+
+
+*alt f4
+{rwin}{q}>{speed6}{-lalt}{f4}{+lalt}
+{ralt}{q}>{speed6}{-lalt}{f4}{+lalt}
+
+

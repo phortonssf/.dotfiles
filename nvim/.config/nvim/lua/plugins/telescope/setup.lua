@@ -1,6 +1,10 @@
 if not pcall(require, "telescope") then
   return
 end
+local open_with_trouble = require("trouble.sources.telescope").open
+
+-- Use this to add more results without clearing the trouble list
+local add_to_trouble = require("trouble.sources.telescope").add
 
 local actions = require("telescope.actions")
 local select_one_or_multi = function(prompt_bufnr)
@@ -119,7 +123,12 @@ require("telescope").setup({
     },
   },
   extensions = {
-    live_grep_args = {},
+    live_grep_args = {
+      mappings = {
+        i = { ["<C-t>"] = open_with_trouble },
+        n = { ["<C-t>"] = open_with_trouble },
+      },
+    },
     frecency = {
       mappings = {
         i = {

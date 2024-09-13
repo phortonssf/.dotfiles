@@ -20,7 +20,7 @@ return {
       find = "gsf", -- find surrounding (to the right)
       find_left = "gsf", -- find surrounding (to the left)
       highlight = "gsh", -- highlight surrounding
-      replace = "sr", -- replace surrounding
+      replace = "gsr", -- replace surrounding
       update_n_lines = "gsn", -- update `n_lines`
     },
   },

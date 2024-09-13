@@ -21,3 +21,15 @@
 --   end,
 -- })
 --
+--
+-- Autocommand to bind keys when Trouble window is opened
+-- vim.api.nvim_create_autocmd("BufWinEnter", {
+--   group = "TroubleKeybinds",
+--   callback = function()
+--     local bufnr = vim.api.nvim_get_current_buf()
+--     if is_trouble_buffer(bufnr) then
+--       vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-n>", ":cnext<CR>", { noremap = true, silent = true })
+--       vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-p>", ":cprev<CR>", { noremap = true, silent = true })
+--     end
+--   end,
+-- })

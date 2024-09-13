@@ -11,11 +11,13 @@
   se = !git rev-list --all | xargs git grep -F
   rhp = reset --hard origin/$(current_branch)
   cnoc = commit -a --amend --no-edit
-  restfile = git reset @~ "$@" && git commit --amend --no-edit
-  forcep =  git push --force-with-lease origin $(current_branch)
+  restfile = 'reset @~ "$@" && git commit --amend --no-edit'
+  forcep =  push --force-with-lease origin $(current_branch)
   nb = checkout -b
   del = branch -D
-  br =  branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+   ; br = brl
+  ; br = switch " $(git brl | fzf | awk '\''{print $1}'\'')"
+  brl =  branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' 
   co = checkout
   c = commit -m
   l = log --graph --pretty='format:%C(red)%d%C(reset) %C(yellow)%h%C(reset) %ar %C(green)%aN%C(reset) %s'
@@ -24,6 +26,7 @@
   groot = rev-parse --show-toplevel
   root = !pwd
 	staash = stash --all
+	br = !sh -c 'git switch $(git brl | fzf | awk \"{print \\$1}\")'
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [interactive]
@@ -56,6 +59,6 @@
 [column]
 	ui = auto
 [branch]
-	sort = --committerdate
+	sort = -committerdate
 [maintenance]
 	repo = /home/digitaldive/.dotfiles
