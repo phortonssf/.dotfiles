@@ -1,9 +1,9 @@
 # setopt hist_save_no_dups
-export LC_ALL=en_US.utf-8
-export LANG=en_US.utf-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 export PATH=$PATH:~/bin
 export PATH=$PATH:~/.local/bin # set aws cli default pager
-EXPORT AWS_PAGER="nvim"
+export AWS_PAGER="nvim"
 export PATH=/usr/local/bin/:$PATH
 export PATH=~/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -26,7 +26,7 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.npm-global/bin/:$PATH
 export GOPATH=/home/linuxbrew/.linuxbrew/bin/go
 export PATH=$GOPATH:$PATH
-
+#
 export HELIX_RUNTIME=/home/linuxbrew/.linuxbrew/bin/go/helix
 export PATH=$HELIX_RUNTIME:$PATH
 export AWS_VAULT_BACKEND="pass"
@@ -34,8 +34,8 @@ export NVM_DIR="$HOME/.nvm"
 export KEYTIMEOUT=1
 # export editor='vim'
 export EDITOR='nvim'
-export LF_CONFIG_HOME="~/.config"
-export XDG_CONFIG_HOME="~/.config"
+export LF_CONFIG_HOME=$HOME/.config
+export XDG_CONFIG_HOME=$HOME/.config
 # export zsh_system_clipboard_tmux_support='true'
 # export zsh_system_clipboard_selection='clipboard'
 export MANPAGER='nvim +man!'
@@ -45,9 +45,8 @@ export MANWIDTH=999
 export START=/mnt/c/Users/Pedro/AppData/Roaming/Microsoft/Windows/Start\ Menu/Programs/Startup
 export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
 export VI_MODE_SET_CURSOR=true
-export VI_MODE_SET_CURSOR=true
-export XDG_DATA_HOME=~/.local/share
-export LF_DATA_HOME=~./local/share
+export XDG_DATA_HOME=$HOME/.local/share
+export LF_DATA_HOME=$HOME/.local/share
 export BROWSER=google-chrome
 # export BROWSER='/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe --profile-directory="Default"'
 # export BROWSER='mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe'
