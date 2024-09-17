@@ -140,14 +140,26 @@ function M.Ftplugin()
     { "cp", hidden = true }, -- hide this keymap
     { "c", hidden = true }, -- hide this keymap
   })
+  -- Function to open the file under cursor in a new tab
+  local function open_file_in_new_tab()
+    -- Get the file path under the cursor
+    local file_path = vim.fn.expand("<cfile>")
+
+    -- Open the file in a new tab
+    vim.cmd("tabnew " .. file_path)
+  end
+
+  -- Set the key mapping
   local bufnr = vim.api.nvim_get_current_buf()
 
   local bufMap = vim.api.nvim_buf_set_keymap
+
+  bufMap(bufnr, "n", "<leader>gt", "", { callback = open_file_in_new_tab, noremap = true, silent = true })
   -- Set a keymap for the current buffer
   bufMap(bufnr, "n", "?", ":h fugitive <CR>", { desc = "fugitive help", noremap = true, silent = true })
 
-  bufMap(bufnr, "n", "<CR>", ":Gvsplit <cfile><CR>", { desc = "Fugivie Open", noremap = true, silent = true })
-  bufMap(bufnr, "n", "<C-v>", ":Gvsplit <cfile><CR>", { desc = "Fugivie Open", noremap = true, silent = true })
+  bufMap(bufnr, "n", "<CR>", ":Gvsplit <cfile><CR>", { desc = "Fugitive Open", noremap = true, silent = true })
+  bufMap(bufnr, "n", "<C-v>", ":Gvsplit <cfile><CR>", { desc = "Fugitive Open", noremap = true, silent = true })
 
   bufMap(bufnr, "n", "<localleader>", "", {
     callback = function()
@@ -197,7 +209,7 @@ function M.Ftplugin()
         feedkeys(t("="), "n", true)
       end,
       desc = "Inline Diff",
-      -- proxy = "=",
+      -- cebkl = "=",
     },
 
     {

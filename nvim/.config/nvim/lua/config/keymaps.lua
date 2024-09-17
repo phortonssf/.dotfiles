@@ -31,10 +31,11 @@ local opt = {
 keymap("n", "<bs>", "<space>", { noremap = false })
 -- vim.keymap.set("n", "<localleader>", '<cmd>lua require("which-key").show("\\\\")<cr>')
 --remove binds
+--
 vim.keymap.del("n", "<c-_>")
 vim.keymap.set("v", "u", "<esc>", { noremap = true, silent = true })
 keymap("n", "<c-w>r", "<cmd>vs#<cr>", { desc = "reopen window" })
-
+keymap("n", "<A-CR>", "<Nop>", {})
 --esc
 keymap("i", "jk", "<esc>", {})
 
@@ -270,6 +271,7 @@ end
 vim.keymap.set("n", "<c-n>", trouble_next, { noremap = true, silent = true })
 vim.keymap.set("n", "<c-p>", trouble_prev, { noremap = true, silent = true })
 
+-- diffget right/left
 keymap("n", "<leader>cy", "<cmd>diffget //3<cr>", { silent = true, desc = "diffget right", noremap = true })
 keymap("n", "<leader>ct", "<cmd>diffget //2<cr>", { silent = true, desc = "diffget left", noremap = true })
 
@@ -299,6 +301,21 @@ require("which-key").add({
     end,
     desc = "Builtin Tele",
   },
+
+  -- {
+  --   "<leader>cy",
+  --   function()
+  --     require("diffview.config").actions.conflict_choose("theirs")
+  --   end,
+  --   desc = "Theirs > ",
+  -- },
+  -- {
+  --   "<leader>ct",
+  --   function()
+  --     require("diffview.config").actions.conflict_choose("ours")
+  --   end,
+  --   desc = "Ours < ",
+  -- },
 
   {
     "<leader>gt",

@@ -28,14 +28,14 @@
 --   callback = function()
 --     local bufnr = vim.api.nvim_get_current_buf()
 --     if is_trouble_buffer(bufnr) then
---       vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-n>", ":cnext<CR>", { noremap = true, silent = true })
 --       vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-p>", ":cprev<CR>", { noremap = true, silent = true })
 --     end
 --   end,
 -- })
 --
--- delete main
 -- vim.api.nvim_create_augroup("FugitiveDiffview", { clear = true })
+--delete diffy
+--
 -- vim.api.nvim_create_autocmd("FileType", {
 --   group = "FugitiveDiffview",
 --   pattern = "fugitive",
