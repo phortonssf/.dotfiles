@@ -35,7 +35,11 @@
 -- })
 --
 -- vim.api.nvim_create_augroup("FugitiveDiffview", { clear = true })
+<<<<<<< HEAD
 --delete main
+=======
+--
+>>>>>>> 962b917 (TEST)
 -- vim.api.nvim_create_autocmd("FileType", {
 --   group = "FugitiveDiffview",
 --   pattern = "fugitive",
