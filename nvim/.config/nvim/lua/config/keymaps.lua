@@ -83,16 +83,11 @@ keymap("n", "<leader>d%", ":norm %x`'x<cr>", opt)
 keymap("n", "<c-j>", ":lua require('harpoon.ui').nav_file(1)<cr>", opt)
 keymap("n", "<c-k>", ":lua require('harpoon.ui').nav_file(2)<cr>", opt)
 keymap("n", "<c-l>", ":lua require('harpoon.ui').nav_file(3)<cr>", opt)
--- keymap("n", "F13", ":lua require('harpoon.ui').nav_file(4)<CR>", opt)
+keymap("n", "F13", ":lua require('harpoon.ui').nav_file(4)<CR>", opt)
 -- ctrl-; is f13 kinesis bind
 keymap("n", "<F13>", ":lua require('harpoon.ui').nav_file(4)<CR>", opt)
 keymap("n", "<C-e>", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", opt)
 keymap("n", "<leader>m", ":lua require('harpoon.mark').toggle_file()<CR>", { desc = "Harpoon Mark" })
----GIT
--- keymap("n", "<leader>gd", "<cmd> DiffviewFileHistory % <cr>", { desc = "Diff File" })
--- keymap("n", "<leader>gD", "<cmd> DiffviewFileHistory <cr>", { desc = "Diff Branch" })
-keymap("n", "<leader>gs", "<cmd>to vert G<cr>", { silent = true, desc = "Fugitive", noremap = true })
-keymap("n", "<leader>gc", "<cmd>G commit<cr>", opt)
 --Undo to Last Write
 keymap(
   "n",
@@ -102,7 +97,7 @@ keymap(
 )
 keymap("n", "Q", "@q", { desc = "Macro" })
 --keymap"n", "<A-g>", "<cmd> !$EDITOR | "
--- move visual selectio 4444444n left/right
+-- move visual selection left/right
 keymap("n", "<", "<gv", opt)
 keymap("v", "<", "<gv", opt)
 keymap("n", ">", ">gv", opt)
@@ -128,6 +123,7 @@ local function go_to_saved_window()
 end
 -- Keybinding to go to the saved window ID
 vim.keymap.set("n", "<leader>^", go_to_saved_window, { desc = "flash return", noremap = true, silent = true })
+vim.keymap.set("n", "<leader><Tab>q", "<cmd> tabclose <cr>", { desc = "Tab Close", noremap = true, silent = true })
 
 -- vim.keymap.set("n", "<c-w><c-w>", "<c-w><c-p>")
 function ToggleQuickFix()
@@ -199,24 +195,6 @@ local function print_table(t, indent)
   end
 end
 
-local function trouble_next()
-  local isOpen = require("trouble").is_open(opts)
-  if isOpen == true then
-    require("trouble").next({ jump = true })
-  else
-  end
-end
-local function trouble_prev()
-  local isOpen = require("trouble").is_open(opts)
-  if isOpen == true then
-    require("trouble").prev({ jump = true })
-  else
-  end
-end
-
-vim.keymap.set("n", "<c-n>", trouble_next, { noremap = true, silent = true })
-vim.keymap.set("n", "<c-p>", trouble_prev, { noremap = true, silent = true })
-
 -- Function to get the visual selection
 local function get_visual_selection()
   vim.cmd('noau normal! "vy"')
@@ -244,7 +222,7 @@ local function search_replace()
 
   vim.cmd(":%s/" .. search_term .. "/" .. replace_term .. "/gc")
 end
--- Keybindings
+--Search
 vim.keymap.set("n", "<leader>sr", search_replace, { desc = "search and replace", noremap = true, silent = true })
 vim.keymap.set("v", "<leader>sr", search_replace, { desc = "search and replace", noremap = true, silent = true })
 
@@ -258,5 +236,41 @@ local function mark_long_jumps(key)
   end
 end
 
+-- add marks to long movements
 vim.keymap.set("n", "j", mark_long_jumps("j"), { noremap = true, silent = true })
 vim.keymap.set("n", "k", mark_long_jumps("k"), { noremap = true, silent = true })
+
+-- GIT
+local function reset_current_buffer()
+  require("gitsigns").reset_buffer()
+end
+
+-- Set the keybinding to reset the current buffer
+vim.api.nvim_set_keymap("n", "<leader>gr", "", {
+  desc = "reset file",
+  noremap = true,
+  silent = true,
+  callback = reset_current_buffer,
+})
+local function trouble_next()
+  local isOpen = require("trouble").is_open(opts)
+  if isOpen == true then
+    require("trouble").next({ jump = true })
+  else
+  end
+end
+local function trouble_prev()
+  local isOpen = require("trouble").is_open(opts)
+  if isOpen == true then
+    require("trouble").prev({ jump = true })
+  else
+  end
+end
+
+vim.keymap.set("n", "<c-n>", trouble_next, { noremap = true, silent = true })
+vim.keymap.set("n", "<c-p>", trouble_prev, { noremap = true, silent = true })
+
+-- keymap("n", "<leader>gd", "<cmd> DiffviewFileHistory % <cr>", { desc = "Diff File" })
+-- keymap("n", "<leader>gD", "<cmd> DiffviewFileHistory <cr>", { desc = "Diff Branch" })
+keymap("n", "<leader>gs", "<cmd>to vert G<cr>", { silent = true, desc = "Fugitive", noremap = true })
+keymap("n", "<leader>gc", "<cmd>G commit<cr>", opt)

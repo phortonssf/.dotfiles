@@ -154,84 +154,74 @@ local M = {}
 -- end
 
 function M.Ftplugin()
-  local buf = vim.api.nvim_get_current_buf()
-  vim.keymap.set({ "v", "n" }, "<Leader>gg", function()
-    vim.print("Hello, World!")
-  end, { desc = "TEST MAPPING", buffer = buf })
-  vim.keymap.set({ "v", "n" }, "<Leader>gG", function()
-    vim.print("Hello, World 2!")
-  end, { desc = "TEST MAPPING 2", buffer = buf })
-
   require("which-key").add({
-    -- { "a", hidden = true }, -- hide this keymap
-    -- { "C", hidden = true }, -- hide this keymap
-    -- { "ca", hidden = true }, -- hide this keymap
-    -- { "cA", hidden = true }, -- hide this keymap
-    -- { "cc", hidden = true }, -- hide this keymap
-    -- { "cf", hidden = true }, -- hide this keymap
-    -- { "cF", hidden = true }, -- hide this keymap
-    -- { "ce", hidden = true }, -- hide this keymap
-    -- { "cmt", hidden = true }, -- hide this keymap
-    -- { "coo", hidden = true }, -- hide this keymap
-    -- { "cRe", hidden = true }, -- hide this keymap
-    -- { "cRa", hidden = true }, -- hide this keymap
-    -- { "crc", hidden = true }, -- hide this keymap
-    -- { "crc", hidden = true }, -- hide this keymap
-    -- { "crn", hidden = true }, -- hide this keymap
-    -- { "cRw", hidden = true }, -- hide this keymap
-    -- { "cS", hidden = true }, -- hide this keymap
-    -- { "cs", hidden = true }, -- hide this keymap
-    -- { "cs", hidden = true }, -- hide this keymap
-    -- { "cva", hidden = true }, -- hide this keymap
-    -- { "crn", hidden = true }, -- hide this keymap
-    -- { "cva", hidden = true }, -- hide this keymap
-    -- { "cvc", hidden = true }, -- hide this keymap
-    -- { "cw", hidden = true }, -- hide this keymap
-    -- { "cza", hidden = true }, -- hide this keymap
-    -- { "czA", hidden = true }, -- hide this keymap
-    -- { "czp", hidden = true }, -- hide this keymap
-    -- { "czP", hidden = true }, -- hide this keymap
-    -- { "czs", hidden = true }, -- hide this keymap
-    -- { "czv", hidden = true }, -- hide this keymap
-    -- { "czw", hidden = true }, -- hide this keymap
-    -- { "czz", hidden = true }, -- hide this keymap
-    -- { "D", hidden = true }, -- hide this keymap
-    -- { "D", hidden = true }, -- hide this keymap
-    -- --     U = { "U", "Unstage all" },
-    -- { "<localleader>U", "Unstage all", desc = "Find File", mode = "n" },
-    {
-      "<localleader>c",
-      group = "buffers",
-      desc = "buffers",
-      buffer = buf,
-      expand = function()
-        return require("which-key.extras").expand.buf()
-      end,
-    },
-    {
-      "<localleader>f",
-      function()
-        print("folke")
-      end,
-      desc = "folke",
-      mode = { "n", "v" },
-      group = "folke",
-    },
-    {
-      "<localleader>g",
-      group = "test",
-      mode = "n",
-    },
-    { "<localleader>gr", group = "folke", desc = "Test", mode = "v", buffer = buf },
-    {
-      "<localleader>gg",
-      function()
-        print("folke")
-      end,
-      desc = "Test",
-      mode = "n",
-      buffer = buf,
-    },
+    { "a", hidden = true }, -- hide this keymap
+    { "C", hidden = true }, -- hide this keymap
+    { "ca", hidden = true }, -- hide this keymap
+    { "cA", hidden = true }, -- hide this keymap
+    { "cc", hidden = true }, -- hide this keymap
+    { "cf", hidden = true }, -- hide this keymap
+    { "cF", hidden = true }, -- hide this keymap
+    { "ce", hidden = true }, -- hide this keymap
+    { "cmt", hidden = true }, -- hide this keymap
+    { "coo", hidden = true }, -- hide this keymap
+    { "cRe", hidden = true }, -- hide this keymap
+    { "cRa", hidden = true }, -- hide this keymap
+    { "crc", hidden = true }, -- hide this keymap
+    { "crc", hidden = true }, -- hide this keymap
+    { "crn", hidden = true }, -- hide this keymap
+    { "cRw", hidden = true }, -- hide this keymap
+    { "cS", hidden = true }, -- hide this keymap
+    { "cs", hidden = true }, -- hide this keymap
+    { "cs", hidden = true }, -- hide this keymap
+    { "cva", hidden = true }, -- hide this keymap
+    { "crn", hidden = true }, -- hide this keymap
+    { "cva", hidden = true }, -- hide this keymap
+    { "cvc", hidden = true }, -- hide this keymap
+    { "cw", hidden = true }, -- hide this keymap
+    { "cza", hidden = true }, -- hide this keymap
+    { "czA", hidden = true }, -- hide this keymap
+    { "czp", hidden = true }, -- hide this keymap
+    { "czP", hidden = true }, -- hide this keymap
+    { "czs", hidden = true }, -- hide this keymap
+    { "czv", hidden = true }, -- hide this keymap
+    { "czw", hidden = true }, -- hide this keymap
+    { "czz", hidden = true }, -- hide this keymap
+    { "D", hidden = true }, -- hide this keymap
+    { "D", hidden = true }, -- hide this keymap
   })
+  local bufnr = vim.api.nvim_get_current_buf()
+
+  local bufMap = vim.api.nvim_buf_set_keymap
+  -- Set a keymap for the current buffer
+  bufMap(bufnr, "n", "?", ":h fugitive <CR>", { desc = "fugitive help", noremap = true, silent = true })
+
+  bufMap(bufnr, "n", "<CR>", ":Gvsplit <cfile><CR>", { desc = "fugitive help", noremap = true, silent = true })
+
+  bufMap(bufnr, "n", "M", "", {
+    callback = function()
+      require("which-key").show("")
+    end,
+    desc = "show",
+    noremap = true,
+    silent = true,
+  })
+  bufMap(bufnr, "n", "<localleader>H", ":Gvsplit - <CR>", { desc = "Show Last Message", noremap = true, silent = true })
+  bufMap(
+    bufnr,
+    "n",
+    "<localleader>gd",
+    ":Gtabedit <cfile> | DiffviewFileHistory % <CR>",
+    -- ":Gtabedit <cfile> <CR>",
+    { desc = "Diffview File", noremap = true, silent = true }
+  )
+  bufMap(
+    bufnr,
+    "n",
+    "<leader>gd",
+    ":Gvsplit <cfile> | DiffviewFileHistory % <CR>",
+    -- ":Gtabedit <cfile> <CR>",
+    { desc = "Diffview File", noremap = true, silent = true }
+  )
 end
 return M.Ftplugin()

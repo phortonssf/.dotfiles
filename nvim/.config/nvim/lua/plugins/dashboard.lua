@@ -24,7 +24,7 @@ return {
         header = vim.split(logo, "\n"),
         -- stylua: ignore
         center = {
-          { action = 'lua LazyVim.pick()()',                           desc = " Find File",       icon = " ", key = "f" },
+          { action = 'lua require("telescope.builtin").find_files()',                           desc = " Find File",       icon = " ", key = "f" },
           { action = "ene | startinsert",                              desc = " New File",        icon = " ", key = "n" },
           { action = "Telescope frecency workspace=CWD",               desc = " Recent Files",    icon = " ", key = "r" },
           { action = 'lua require("telescope").extensions.live_grep_args.live_grep_args()', desc = " Find Text",       icon = " ", key = "g" },
