@@ -34,7 +34,7 @@
 --   end,
 -- })
 --
---delete main
+-- delete main
 -- vim.api.nvim_create_augroup("FugitiveDiffview", { clear = true })
 -- vim.api.nvim_create_autocmd("FileType", {
 --   group = "FugitiveDiffview",
