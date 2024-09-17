@@ -34,13 +34,13 @@
 --   end,
 -- })
 --
-vim.api.nvim_create_augroup("FugitiveDiffview", { clear = true })
-
-vim.api.nvim_create_autocmd("FileType", {
-  group = "FugitiveDiffview",
-  pattern = "fugitive",
-  callback = function()
-    -- Keybinding to accept the right side of the conflict
-    vim.api.nvim_buf_set_keymap(0, "n", "<leader>gr", ":diffget //3<CR>", { noremap = true, silent = true })
-  end,
-})
+-- vim.api.nvim_create_augroup("FugitiveDiffview", { clear = true })
+--delete main
+-- vim.api.nvim_create_autocmd("FileType", {
+--   group = "FugitiveDiffview",
+--   pattern = "fugitive",
+--   callback = function()
+--     -- Keybinding to accept the right side of the conflict
+--     vim.api.nvim_buf_set_keymap(0, "n", "<leader>gr", ":diffget //3<CR>", { noremap = true, silent = true })
+--   end,
+-- })
