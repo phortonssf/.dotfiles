@@ -60,7 +60,7 @@ if status is-interactive
     set -U fish_escape_delay_ms 100
 
     # TODO add alias for grex regex helper
-    # delete main
+    # delete
     alias gb='git branch -v'
     alias gbc='git switch -c'
     alias gbs='git switch $(git br | fzf | awk '\''{print $1}'\'')'
