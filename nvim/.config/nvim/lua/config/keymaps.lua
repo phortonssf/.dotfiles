@@ -292,4 +292,19 @@ require("which-key").add({
   { "<leader>g", group = "Git" },
   { "<leader>gf", diffOpenFileHistory, desc = "Open DiffView on Files" },
   { "<leader>go", diffOpenWithInput, desc = "Open DiffView" },
+  {
+    "<leader>sB",
+    function()
+      require("telescope.builtin").builtin()
+    end,
+    desc = "Builtin Tele",
+  },
+
+  {
+    "<leader>gt",
+    function()
+      require("telescope.builtin").git_branches({})
+    end,
+    desc = "Git Branches",
+  },
 })
