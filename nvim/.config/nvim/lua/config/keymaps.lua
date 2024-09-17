@@ -283,7 +283,7 @@ local function diffOpenFileHistory()
   local user_input = vim.fn.input("Files to Open: ")
   vim.cmd("DiffviewFileHistory" .. user_input)
 end
-
+-- delete
 -- Key maps
 require("which-key").add({
   { "<leader>g", group = "Git" },
