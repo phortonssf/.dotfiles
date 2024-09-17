@@ -4,7 +4,9 @@ return {
   { "rcarriga/nvim-notify", opts = {
     background_colour = "#000000",
   } },
-  { "tpope/vim-fugitive" },
+  { "tpope/vim-fugitive", dependencies = {
+    "tpope/vim-rhubarb",
+  } },
   {
     "lazyvim/lazyvim",
     opts = {

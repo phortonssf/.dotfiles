@@ -274,3 +274,19 @@ vim.keymap.set("n", "<c-p>", trouble_prev, { noremap = true, silent = true })
 -- keymap("n", "<leader>gD", "<cmd> DiffviewFileHistory <cr>", { desc = "Diff Branch" })
 keymap("n", "<leader>gs", "<cmd>to vert G<cr>", { silent = true, desc = "Fugitive", noremap = true })
 keymap("n", "<leader>gc", "<cmd>G commit<cr>", opt)
+local function diffOpenWithInput()
+  local user_input = vim.fn.input("Revision to Open: ")
+  vim.cmd("DiffviewOpen " .. user_input)
+end
+
+local function diffOpenFileHistory()
+  local user_input = vim.fn.input("Files to Open: ")
+  vim.cmd("DiffviewFileHistory" .. user_input)
+end
+
+-- Key maps
+require("which-key").add({
+  { "<leader>g", group = "Git" },
+  { "<leader>gf", diffOpenFileHistory, desc = "Open DiffView on Files" },
+  { "<leader>go", diffOpenWithInput, desc = "Open DiffView" },
+})
