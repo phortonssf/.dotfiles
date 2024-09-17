@@ -28,14 +28,14 @@
 --   callback = function()
 --     local bufnr = vim.api.nvim_get_current_buf()
 --     if is_trouble_buffer(bufnr) then
+--       vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-n>", ":cnext<CR>", { noremap = true, silent = true })
 --       vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-p>", ":cprev<CR>", { noremap = true, silent = true })
 --     end
 --   end,
 -- })
 --
+-- delete  diffy
 -- vim.api.nvim_create_augroup("FugitiveDiffview", { clear = true })
---delete diffy
---
 -- vim.api.nvim_create_autocmd("FileType", {
 --   group = "FugitiveDiffview",
 --   pattern = "fugitive",
@@ -44,3 +44,12 @@
 --     vim.api.nvim_buf_set_keymap(0, "n", "<leader>gr", ":diffget //3<CR>", { noremap = true, silent = true })
 --   end,
 -- })
+vim.api.nvim_create_autocmd("User", {
+  pattern = "FugitiveIndex",
+  callback = function()
+    vim.api.nvim_buf_set_keymap(0, "n", "dt", "<CMD>Gtabedit <Plug><cfile><Bar>Gdiffsplit<CR>", {
+      noremap = false,
+      silent = true,
+    })
+  end,
+})
