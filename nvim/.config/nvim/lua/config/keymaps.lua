@@ -270,6 +270,9 @@ end
 vim.keymap.set("n", "<c-n>", trouble_next, { noremap = true, silent = true })
 vim.keymap.set("n", "<c-p>", trouble_prev, { noremap = true, silent = true })
 
+keymap("n", "<leader>cy", "<cmd>diffget //3<cr>", { silent = true, desc = "diffget right", noremap = true })
+keymap("n", "<leader>ct", "<cmd>diffget //2<cr>", { silent = true, desc = "diffget left", noremap = true })
+
 -- keymap("n", "<leader>gd", "<cmd> DiffviewFileHistory % <cr>", { desc = "Diff File" })
 -- keymap("n", "<leader>gD", "<cmd> DiffviewFileHistory <cr>", { desc = "Diff Branch" })
 keymap("n", "<leader>gs", "<cmd>to vert G<cr>", { silent = true, desc = "Fugitive", noremap = true })
