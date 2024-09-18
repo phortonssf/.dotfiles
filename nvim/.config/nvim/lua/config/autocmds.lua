@@ -47,7 +47,7 @@
 vim.api.nvim_create_autocmd("User", {
   pattern = "FugitiveIndex",
   callback = function()
-    vim.api.nvim_buf_set_keymap(0, "n", "dt", "<CMD>Gtabedit <Plug><cfile><Bar>Gdiffsplit<CR>", {
+    vim.api.nvim_buf_set_keymap(0, "n", "dt", ":Gtabedit <Plug><cfile><Bar>Gdiffsplit<CR>", {
       noremap = false,
       silent = true,
     })

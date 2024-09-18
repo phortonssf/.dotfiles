@@ -288,7 +288,6 @@ local function diffOpenFileHistory()
   local user_input = vim.fn.input("Files to Open: ")
   vim.cmd("DiffviewFileHistory" .. user_input)
 end
--- delete
 -- Key maps
 require("which-key").add({
   { "<leader>g", group = "Git" },
@@ -301,22 +300,6 @@ require("which-key").add({
     end,
     desc = "Builtin Tele",
   },
-
-  -- {
-  --   "<leader>cy",
-  --   function()
-  --     require("diffview.config").actions.conflict_choose("theirs")
-  --   end,
-  --   desc = "Theirs > ",
-  -- },
-  -- {
-  --   "<leader>ct",
-  --   function()
-  --     require("diffview.config").actions.conflict_choose("ours")
-  --   end,
-  --   desc = "Ours < ",
-  -- },
-
   {
     "<leader>gt",
     function()
