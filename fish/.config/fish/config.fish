@@ -32,19 +32,23 @@ set -g fish_prompt_at_top true
 # ~/.tmux/plugins
 fish_add_path /home/digitaldive/.cargo/bin
 
+# set -U fish_color_completion cyan
+# set -U fish_color_autosuggestion cyan
 # t-smart-tmux-session-manager
 # fish_add_path $HOME/.tmux/plugins/t-smart-tmux-session-manager/bin
 
 # T ENV VARS
 # set -Ux T_SESSION_USE_GIT_ROOT true
 # set -Ux T_SESSION_NAME_INCLUDE_PARENT true
-
-
+# wslview for opening browser
+set -g BROWSER wslview
 # ~/.config/tmux/plugins
 # fish_add_path $home/.config/tmux/plugins/t-smart-tmux-session-manager/bin
 # fish_ssh_agent
 #only run if inter */
 if status is-interactive
+    eval (ssh-agent -c)
+    ssh-add
     # set fish_color_selection --background="#C29DF1"
     set fish_color_selection --background="#7851A9"
     # set fish_color_selection --background="#120043"
@@ -56,6 +60,11 @@ if status is-interactive
     set -U fish_escape_delay_ms 100
 
     # TODO add alias for grex regex helper
+    # delete
+    alias gb='git branch -v'
+    alias gbc='git switch -c'
+    alias gbs='git switch $(git br | fzf | awk '\''{print $1}'\'')'
+    alias diffview='nvim +DiffviewOpen'
 
     alias gconf='nvim ~/.dotfiles/git/.gitconfig'
     alias gs="nvim -c 'to vert G | vertical resize 80'"
@@ -64,6 +73,7 @@ if status is-interactive
     alias troot='cd $TMUX_ROOT'
     alias tk='tmux kill-server'
     alias T='sesh connect $(sesh list | fzf)'
+    alias freshshell=" sh -c 'env HOME=$(mktemp -d) XDG_CONFIG_HOME= fish'"
     # alias tkill='tmux list-sessions | grep -v attached | (awk 'begin{fs=":"}{print $1}' )| xargs -n 1 tmux kill-session -t || echo No sessions to kill'
     # alias killunattachedtmux 'tmux ls | awk "BEGIN{FS=\":\"}!/attached/{print $1}" | xargs -n 1 tmux kill-session -t'
     # alias tkill= "tmux ls | awk 'BEGIN{FS=":"}!/attached/{print $1}' | xargs -n 1 tmux kill-ses -t"
@@ -82,12 +92,24 @@ if status is-interactive
     bind -M insert \cc kill-whole-line repaint
 
     # LF CTRL O open dir after close
-    bind -M insert \co 'set old_tty (stty -g); stty sane; lfcd; stty $old_tty; commandline -f repaint'
-    # ctrl enter accept-autosuggestion and run
-    # runs fg to return foreground process 
-    bind -M insert \cz fore_ground
-    bind -M default \cz fore_ground
+    # bind -M insert \cn 'set old_tty (stty -g); stty sane; lfcd; stty $old_tty; commandline -f repaint'
+    bind -M insert j 'commandline -P; and down-or-search; or commandline -i j'
+    bind -M insert k 'commandline -P; and up-or-search; or commandline -i k'
+    bind -M insert h 'commandline -P; and commandline -f backward-char; or commandline -i h'
+    bind -M insert l 'commandline -P; and commandline -f forward-char; or commandline -i l'
+    bind -M insert \cn down-or-search
+    bind -M insert \cp up-or-search
 
+    # runs fg to return foreground process 
+    bind -M insert \cz fg
+    bind -M default \cz fg
+
+    # bind ctrl-left/right to next  or word
+    bind -M insert \e\[1\;5C nextd-or-forward-word
+    bind -M insert \e\[1\;5D prevd-or-backward-word
+    bind -M normal \e\[1\;5C nextd-or-forward-word
+    bind -M normal \e\[1\;5D prevd-or-backward-word
+    # ctrl enter accept-autosuggestion and run
     bind -M insert \cj accept-autosuggestion execute
     bind -k -M insert nul nextd-or-forward-word
 
@@ -98,6 +120,8 @@ if status is-interactive
     # bind -e -M normal -k F8 true
     # bind -e -M normal -k F8 true
     # bind ctrl-a to null for tmux-bindkey
+
+
     bind -M insert \ca true
     bind -M normal \ca true
 
@@ -149,6 +173,5 @@ if status is-interactive
             command sudo $argv
         end
     end
-
 end
 # Load fishmarks (http://github.com/techwizrd/fishmarks)

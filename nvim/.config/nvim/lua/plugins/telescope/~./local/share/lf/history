@@ -1,0 +1,5 @@
+: mkdir test
+! mkdir test
+! rm -r
+! rm -r test
+! mkdir telescope

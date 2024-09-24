@@ -77,7 +77,22 @@ local colors = {
           },
         },
       },
-      lualine_c = {},
+      lualine_c = {
+        {
+          function()
+            local reg = vim.fn.reg_recording()
+            if reg == "" then
+              return ""
+            else
+              return "Recording @" .. reg
+            end
+          end,
+          cond = function()
+            return vim.fn.reg_recording() ~= ""
+          end,
+          color = { fg = "#ff9e64" },
+        },
+      },
       -- lualine_c = { vim.loop.cwd() },
       lualine_x = {},
       lualine_y = { "filetype", "progress" },
